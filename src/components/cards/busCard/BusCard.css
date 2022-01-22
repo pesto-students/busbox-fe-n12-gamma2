@@ -1,0 +1,127 @@
+
+.card-bus{
+    width: 90%;
+    max-width: 390px;
+    height: fit-content;
+    padding: 0.2rem;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    padding: 1rem;
+}
+        /* BUS And RATING component styles - Start */
+.card-bus-row1{
+    display: flex;
+    justify-content: space-between;
+}
+.bus-name{
+    width: fit-content;
+    height: fit-content;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1rem;
+    margin:0px;
+    color: #000000;
+    padding-top: 5px;
+}
+
+.rating{
+    color:white;
+    font-size: 0.6rem;
+    text-align: center;
+}
+
+.rating-text{
+    padding: 0.1rem;
+}
+.rating-avg{
+    background-color: #59DA44;
+}
+.rating-voters{
+    background-color:#C4C4C4 ;
+}
+        /* BUS And RATING component styles - End */
+
+        /* TIME And PRICE component styles - Start */
+.card-bus-row2{         
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: lighter;
+}
+
+.card-bus-row2 p {
+    margin: 0;
+}
+
+.timings-container {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.timing {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.clock-icon{
+    height: 12px;
+    width: 12px;
+    margin-right: 16px;
+}
+
+.timing-title {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    justify-content: space-between;
+}
+
+.timing-title p {
+    margin: 0;
+}
+.price{
+    font-size: 16px;
+    margin: 0px;
+    font-weight: bold;
+    text-align: right;
+    width: 22%; 
+}
+.price p{
+    margin: 0px;
+}
+        /* TIME And PRICE component styles - End */
+
+        /* Amenities component styles - Start */
+.card-bus-row3{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 500px;
+    margin-top: 16px;
+}
+
+.aminity{
+    display: flex; 
+    font-size: 0.7rem;
+}
+
+.aminity-text{
+    margin:0px;
+    margin-left: 5px;
+}
+
+.aminity-img{
+    width: 12px;
+    height: 12px;
+}
+
+/* Amenities component styles - End */

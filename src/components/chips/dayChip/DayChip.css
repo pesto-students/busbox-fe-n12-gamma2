@@ -1,0 +1,17 @@
+.day-chip{
+    
+    width: fit-content;
+    height: fit-content;
+    background: #5669FF;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    align-items: center;
+    border-radius: 8px;
+    border: 5px solid #5669FF;
+    border-right: 10px solid #5669FF;
+    border-left: 10px solid #5669FF;
+    color: #FFFFFF;
+    
+}

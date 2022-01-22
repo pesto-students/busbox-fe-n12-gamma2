@@ -1,0 +1,24 @@
+.primary-button-wrapper {
+    display: flex;
+    width: 260px;
+    height: 58px;
+    background: #5669FF;
+    border: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    align-items: center;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+.primary-button-text{
+    margin:auto;
+}
+.primary-button-img{ 
+    margin-right:20px;
+    height: 44.85%;
+    width: 10%;
+}

@@ -1,0 +1,10 @@
+.normal-seat{
+    height: 2rem;
+    width: 2rem;
+}
+
+.sleeper-seat{
+    height: 3rem;
+    width: 1.5rem;
+    margin: 0.5rem 0rem;
+}

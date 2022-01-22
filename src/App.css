@@ -1,0 +1,19 @@
+html, body, #root, .main-container {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Roboto', serif;
+}
+
+
+.page-content {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 75px;
+}
+
+.input-icon {
+    width: 16px;
+    height: 16px;
+}

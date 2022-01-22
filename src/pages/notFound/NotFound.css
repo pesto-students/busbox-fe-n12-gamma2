@@ -1,0 +1,21 @@
+.not-found {
+    height: 90%;
+}
+
+.not-found-content{
+    display: flex;
+    height: 85%;
+    align-items: center;
+    justify-content: space-around;
+    color: #AD2F08;
+}
+
+.not-found-content img{
+    width: 100%;
+}
+
+.back-button-container{
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+}
