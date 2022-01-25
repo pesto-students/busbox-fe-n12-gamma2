@@ -1,11 +1,14 @@
-.passenger-details{
+.verify-otp{
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
-.verify-otp{
-    height: 35%;
-    
+
+.verify-otp-card{
+    background: white;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
 }

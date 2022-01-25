@@ -6,7 +6,7 @@ const getSeatIcon = (status='booked') => {
         return require('../../icons/st-booked.png')
     } else if(status === 'selected') {
         return require('../../icons/st-selected.png')
-    } else if(status === 'reserved') {
+    } else if(status === 'reserved for ladies') {
         return require('../../icons/st-reserved.png')
     }
 }
@@ -19,7 +19,7 @@ const getSleeperSeatIcon = (status='booked') => {
         return require('../../icons/sl-booked.png')
     } else if(status === 'selected') {
         return require('../../icons/sl-selected.png')
-    } else if(status === 'reserved') {
+    } else if(status === 'reserved for ladies') {
         return require('../../icons/sl-reserved.png')
     }
 }

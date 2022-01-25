@@ -3,6 +3,6 @@ import './Heading.css'
 
 export default function Heading(props){
     return (
-        <h1 className="heading">{props.text}</h1>
+        <h2 className="heading">{props.text}</h2>
     )
 } 

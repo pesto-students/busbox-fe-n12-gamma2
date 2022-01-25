@@ -17,29 +17,39 @@ import CancelBooking from './pages/cancelBooking/CancelBooking'
 import CancelConfirmation from './pages/cancelConfirmation/CancelConfirmation'
 import './App.css'
 import NotFound from './pages/notFound/NotFound'
+import {useSelector} from 'react-redux'
+import Buses from './pages/buses/Buses'
 
 function App () {
+    const state = useSelector(state => state)
     return (
         <div className='main-container'>
             <Navbar />
-            <Routes>
-                <Route exact path="/" element={<Home/>} />
-                <Route path="/bookings" element={<Bookings/>} />
-                <Route path="/signup" element={<SignUp/>} />
-                <Route path="/signin" element={<SignIn/>} />
-                <Route path="/seatlayout" element={<SeatLayout/>} />
-                <Route path="/passengerdetails" element={<PassengerDetails/>} />
-                <Route path="/contactdetails" element={<ContactDetails/>} />
-                <Route path="/verifyotp" element={<VerifyOtp/>} />
-                <Route path="/verifydetails" element={<VerifyDetails/>} />
-                <Route path="/bookingdetails" element={<BookingDetails/>} />
-                <Route path="/citylocation" element={<CityLocation/>} />
-                <Route path="/error" element={<Error/>} />
-                <Route path="/notfound" element={<NotFound/>} />
-                <Route path="/cancelbooking" element={<CancelBooking/>} />
-                <Route path="/cancelconfirmation" element={<CancelConfirmation/>} />
-                {/* <Route path="/busnotfound" element={<BusNotFound/>} /> */}
-            </Routes>
+            <div className= {`loader ${state?.loader?.isLoading ? 'visible' : 'hidden'}`}>
+                <img alt='Loading...' src={require('./icons/Loading.gif')} />
+                <h4>Loading . . .</h4>
+            </div>
+            <div className='pages-container'>
+                <Routes>
+                    <Route exact path="/signup" element={<SignUp/>} />
+                    <Route exact path="/signin" element={<SignIn/>} />
+                    <Route exact path="/" element={<Home/>} />
+                    <Route exact path="/buses" element={<Buses/>} />
+                    <Route exact path="/bookings" element={<Bookings/>} />
+                    <Route exact path="/seat-layout" element={<SeatLayout/>} />
+                    <Route exact path="/passenger-details" element={<PassengerDetails/>} />
+                    <Route exact path="/contact-details" element={<ContactDetails/>} />
+                    <Route exact path="/verify-otp" element={<VerifyOtp/>} />
+                    <Route exact path="/verify-details" element={<VerifyDetails/>} />
+                    <Route exact path="/booking-details" element={<BookingDetails/>} />
+                    <Route exact path="/city-location" element={<CityLocation/>} />
+                    <Route exact path="/error" element={<Error/>} />
+                    <Route exact path="/not-found" element={<NotFound/>} />
+                    <Route exact path="/cancel-booking" element={<CancelBooking/>} />
+                    <Route exact path="/cancel-confirmation" element={<CancelConfirmation/>} />
+                    {/* <Route path="/busnotfound" element={<BusNotFound/>} /> */}
+                </Routes>
+            </div>
         </div>
     )
 }

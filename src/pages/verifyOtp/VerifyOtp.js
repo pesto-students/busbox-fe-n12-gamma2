@@ -6,16 +6,18 @@ import './VerifyOtp.css'
 
 export default function VerifyOtp(){
     return(
-        <div className="passenger-details">
-            <div className="page-content verify-otp">
+        <div className="verify-otp">
+            <div className="page-content">
                 <Heading text="Cancel the booking" />
-                <p>A confirmation code has been sent to patilgajanan1807@gmail.com. Enter that code below to confirm the cancellation.</p>
-                
-                <InputBox
-                    inputType = 'text' 
-                    placeholder="Confirmation Code"
-                    icon={require("../../icons/lock.png")}
-                />
+                <div className='verify-otp-card'>
+                    <p>A confirmation code has been sent to patilgajanan1807@gmail.com. Enter that code below to confirm the cancellation.</p>
+                    
+                    <InputBox
+                        inputType = 'text' 
+                        placeholder="Confirmation Code"
+                        icon={require("../../icons/lock.png")}
+                        />
+                </div>
 
             </div>
             

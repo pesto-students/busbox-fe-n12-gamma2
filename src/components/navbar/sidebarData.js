@@ -27,38 +27,38 @@ const sidebarData = [
         icon: require('../../icons/about.png')
     },
     {
-        title: 'seatlayout',
-        path: '/seatlayout',
+        title: 'Seat Layout',
+        path: '/seat-layout',
         icon: require('../../icons/about.png')
     },
     {
         title: 'passenger',
-        path: '/passengerdetails',
+        path: '/passenger-details',
         icon: require('../../icons/about.png')
     },
     {
         title: 'contactdetails',
-        path: '/contactdetails',
+        path: '/contact-details',
         icon: require('../../icons/about.png')
     },
     {
         title: 'verifyotp',
-        path: '/verifyotp',
+        path: '/verify-otp',
         icon: require('../../icons/about.png')
     },
     {
         title: 'verifydetails',
-        path: '/verifydetails',
+        path: '/verify-details',
         icon: require('../../icons/about.png')
     },
     {
         title: 'bookingdetails',
-        path: '/bookingdetails',
+        path: '/booking-details',
         icon: require('../../icons/about.png')
     },
     {
         title: 'citylocation',
-        path: '/citylocation',
+        path: '/city-location',
         icon: require('../../icons/about.png')
     },
     {

@@ -4,16 +4,57 @@ html, body, #root, .main-container {
     font-family: 'Roboto', serif;
 }
 
+.pages-container{
+    height: 90%;
+    width: 100%;
+    max-height: fit-content;
+    min-height: fit-content;
+}
 
 .page-content {
-    padding: 0 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 75px;
+    width: 100%;
+    padding: 0 2rem;
+    max-width: 390px;
+    -webkit-box-sizing: border-box;
 }
 
 .input-icon {
     width: 16px;
     height: 16px;
+}
+
+.loader {
+    background-color: rgba(136, 136, 136, 0.322);
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loader.hidden {
+    visibility: hidden;
+}
+
+.loader.visible {
+    visibility: visible;
+}
+
+.loader img{
+    padding-top: 40%;
+    width: 75%;
+    border-radius: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.loader h4{
+    margin: 0.5rem;
+}
+
+a {
+    text-decoration: none;
 }

@@ -30,8 +30,10 @@ export default function SignUp(){
                 placeholder="Confirm Password" 
                 icon={require("../../icons/lock.png")}
             />
-            <PrimaryButton text="Sign Up"/>
-            <h1>OR</h1>
+            <div className="sign-up-button">
+                <PrimaryButton text="Sign Up"/>
+            </div>
+            <h2 className="or-text">OR</h2>
             <div className="btn-google">
                 <img className="bottom-icons" src={require("../../icons/google.png")} />
                 <h4 class="txt-no-account">Login With Google</h4>    

@@ -5,6 +5,7 @@
     justify-content: start;
     align-items: center;
     padding: 0rem 1rem;
+    position: static;
 }
 
 .logo-img{

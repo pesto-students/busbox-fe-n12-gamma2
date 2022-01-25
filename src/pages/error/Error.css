@@ -1,10 +1,10 @@
 .error {
-    height: 90%;
+    height: 100%;
 }
 
 .error-content{
     display: flex;
-    height: 100%;
+    height: 90%;
     align-items: center;
     justify-content: flex-start;
     color: #AD2F08;
@@ -18,6 +18,6 @@
 
 .back-button-container{
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     width: 100%;
 }

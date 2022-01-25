@@ -5,10 +5,10 @@ export default function Passenger(props){
     return (
         <div className='passenger'>
             <img className='passenger-icon' src={require("../../icons/profile.png")}/>
-            <p>Gajanan Patil</p>
-            <p>25</p>
-            <p>Male</p>
-            <img className='close-icon' src={require("../../icons/close.png")}/>
+            <p>{props.name}</p>
+            <p>{props.age}</p>
+            <p>{props.gender}</p>
+            <img onClick={() => props.deletePassenger(props.id)} className='close-icon' src={require("../../icons/close.png")}/>
         </div>
     )
 }

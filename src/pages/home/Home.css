@@ -1,12 +1,37 @@
+@import url('https://cdn.syncfusion.com/ej2/material.css');
+
 .home-page{
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 3em;
-    justify-content: space-between;
-}.pick-a-day{
+}
+
+.city-input{
     display: flex;
-    width:60%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.swap-icon{
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: 1rem 0;
+}
+
+.pick-a-day{
+    display: flex;
+    width:100%;
     justify-content: space-between;
+}
+
+.date-input {
+    align-items: center;
+    width: 80%;
+    margin: 2.5rem 0;
+}
+
+.MuiFormControl-root {
+    width: 100%;
 }
