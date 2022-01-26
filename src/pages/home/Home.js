@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import moment from 'moment'
 import {useNavigate} from 'react-router-dom'
 // MUI Imports
@@ -15,25 +15,44 @@ import Heading from '../../components/heading/Heading';
 import api from '../../axios/api'
 import "./Home.css" 
 // Redux Related
-// import {useDispatch} from 'react-redux'
-// import {bindActionCreators} from 'redux'
-// import { routeActions } from "../../state/index"
+import {useDispatch, useSelector} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import { dataActions } from "../../state/index"
+import snackbar from '../../components/snackbar/snackbarUtils'
 
 export default function Home(){
     const navigate = useNavigate();
-    // const {setCurrentRoute} = bindActionCreators(routeActions, useDispatch());
+    const {setUserInputCurrentRoute, setFoundBuses} = bindActionCreators(dataActions, useDispatch());
+    const data = useSelector(state => state?.data)
 
     const [searchInput, setSearchInput] = useState({
-        sourceCity : "",
-        destinationCity: "",
+        sourceCity : '',
+        destinationCity: '',
         date : moment(new Date()).format("DD/MM/YYYY")
     });
-
     const [chip, setChip] = useState('today');
+
+    useEffect(() => {
+        setSearchInput({
+            sourceCity : data?.userInputSourceCity || '',
+            destinationCity: data?.userInputDestinationCity || '',
+            date : data?.userInputDate || moment(new Date()).format("DD/MM/YYYY")
+        })
+        const today = moment(new Date()).format("DD/MM/YYYY")
+        const tomorrow = moment(new Date()).add(1, 'day').format("DD/MM/YYYY")
+
+        const chipName = 
+            data?.userInputDate === today 
+            ? 'today'
+            :  data?.userInputDate === tomorrow
+            ? 'tomorrow'
+            : 'other'
+        setChip(chipName)
+    }, [])
 
     const handleChange = (event) => {
         const name= event?.target?.name;
-        if(!name){
+        if(!name){ // handling chip input here
             setSearchInput(prevInput => ({
                 ...prevInput,
                 date: moment(event).format("DD/MM/YYYY")
@@ -41,7 +60,7 @@ export default function Home(){
             setChip('other');
             return;
         }
-        setSearchInput(
+        setSearchInput( // handling inputbox input here
             prevInput => ({
                 ...prevInput,
                 [name] : event.target.value
@@ -60,15 +79,39 @@ export default function Home(){
     }
 
     function searchBuses(){
+        const source = searchInput.sourceCity.trim().toLowerCase();
+        const destination = searchInput.destinationCity.trim().toLowerCase();
+
+        if(!source){
+            return snackbar.error('Please enter source city');
+        }
+
+        if(!destination){
+            return snackbar.error('Please enter destination city');
+        }
+
+        if(source === destination){
+            return snackbar.error('Source & Destination cannot be same');
+        }
+
+        setUserInputCurrentRoute(searchInput)
+
         api.get('/buses/list', {params : searchInput}).then(result => {
-            // setCurrentRoute(searchInput)
-            navigate('/buses', {
-                state : {
-                    buses : [...result.data],
-                    route: {...searchInput}
-                }})
+            if(result?.data?.length && result?.data?.length <= 0){
+                navigate('/not-found'); return;
+            } else if (!result?.data?.length) {
+                navigate('/error'); return;
+            }
+            
+            setFoundBuses(result.data)
+
+            navigate('/buses')
         }).catch(err => {
-            console.error('ERR_', err);
+            if(err?.response?.status === 404){
+                navigate('/not-found');
+            } else {
+                navigate('/error');
+            }
         })
     }
 
@@ -78,15 +121,17 @@ export default function Home(){
             <div className='city-input'>
                 <InputBox
                     onChange={handleChange}
-                    name='sourceCity' 
+                    name='sourceCity'
+                    value={searchInput.sourceCity}
                     inputType="text" 
                     placeholder="Source City" 
                     icon={require("../../icons/city.png")}
-                />
+                    />
                 <img className='swap-icon' src={require("../../icons/city-swap.png")}/>
                 <InputBox
                     onChange={handleChange}
                     name='destinationCity' 
+                    value={searchInput.destinationCity}
                     inputType="text" 
                     placeholder="Destination City" 
                     icon={require("../../icons/city.png")}

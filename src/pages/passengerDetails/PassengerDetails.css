@@ -9,17 +9,9 @@
     height: fit-content;
     align-items: center;
 }
-.gender{
-    display: flex;
-    flex-direction: column;
-}
 
-.gender input{
-    margin-left: 1rem;
-}
-
-.gender label{
-    margin-left: 0.5rem;
+.gender-buttons {
+    padding-left: .5rem;
 }
 
 .card {

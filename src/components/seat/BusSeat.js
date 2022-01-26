@@ -9,7 +9,8 @@ export default function BusSeat(props){
     const initialStatus = props.status.toLowerCase()
 
     const toggleSelection = () => {
-        console.log(props.seatNumber);
+        console.log(props);
+        console.log(status.toLowerCase());
         if(props.isDummy || status.toLowerCase() === 'booked') return;
         setIsSelected(selected => {
             if(selected) {

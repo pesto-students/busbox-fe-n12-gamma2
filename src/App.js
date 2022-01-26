@@ -19,7 +19,8 @@ import './App.css'
 import NotFound from './pages/notFound/NotFound'
 import {useSelector} from 'react-redux'
 import Buses from './pages/buses/Buses'
-
+import Breadcrumbs from './Breadcrumbs'
+import Snackbar from './components/snackbar/Snackbar'
 function App () {
     const state = useSelector(state => state)
     return (
@@ -29,27 +30,33 @@ function App () {
                 <img alt='Loading...' src={require('./icons/Loading.gif')} />
                 <h4>Loading . . .</h4>
             </div>
+            <Breadcrumbs/>
             <div className='pages-container'>
                 <Routes>
+                    <Route exact path="/" element={<Home/>} />
+
                     <Route exact path="/signup" element={<SignUp/>} />
                     <Route exact path="/signin" element={<SignIn/>} />
-                    <Route exact path="/" element={<Home/>} />
+
                     <Route exact path="/buses" element={<Buses/>} />
+                    <Route exact path="/buses/seats" element={<SeatLayout/>} />
+                    <Route exact path="/buses/seats/locations" element={<CityLocation/>} />
+                    <Route exact path="/buses/seats/locations/passengers" element={<PassengerDetails/>} />
+                    <Route exact path="/buses/seats/locations/passengers/contact" element={<ContactDetails/>} />
+                    <Route exact path="/buses/seats/locations/passengers/contact/verify" element={<VerifyDetails/>} />
+
                     <Route exact path="/bookings" element={<Bookings/>} />
-                    <Route exact path="/seat-layout" element={<SeatLayout/>} />
-                    <Route exact path="/passenger-details" element={<PassengerDetails/>} />
-                    <Route exact path="/contact-details" element={<ContactDetails/>} />
-                    <Route exact path="/verify-otp" element={<VerifyOtp/>} />
-                    <Route exact path="/verify-details" element={<VerifyDetails/>} />
-                    <Route exact path="/booking-details" element={<BookingDetails/>} />
-                    <Route exact path="/city-location" element={<CityLocation/>} />
+                    <Route exact path="/bookings/details" element={<BookingDetails/>} />
+                    <Route exact path="/bookings/details/cancel" element={<CancelBooking/>} />
+                    <Route exact path="/bookings/details/cancel/verify" element={<VerifyOtp/>} />
+                    <Route exact path="/cancel-confirmation" element={<CancelConfirmation/>} />
+
                     <Route exact path="/error" element={<Error/>} />
                     <Route exact path="/not-found" element={<NotFound/>} />
-                    <Route exact path="/cancel-booking" element={<CancelBooking/>} />
-                    <Route exact path="/cancel-confirmation" element={<CancelConfirmation/>} />
                     {/* <Route path="/busnotfound" element={<BusNotFound/>} /> */}
                 </Routes>
             </div>
+            <Snackbar/>
         </div>
     )
 }
@@ -66,6 +73,17 @@ function App () {
 // passenger details
 // contact details
 // otp verification page
+
+{/* <div style={{paddingLeft: '2rem', paddingTop: '1rem'}} className='history'>
+ <span> Home </span> > 
+<span> Buses </span> > 
+<span> Seats </span> > 
+<span> Pickup & Drop </span> > 
+<span> Passengers </span> > 
+<span> Contact </span> > 
+<span> Verity </span> > 
+</div> */}
+
 
 
 export default App

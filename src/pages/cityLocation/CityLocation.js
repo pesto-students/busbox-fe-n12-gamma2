@@ -5,30 +5,25 @@ import './CityLocation.css'
 import Heading from '../../components/heading/Heading'
 import { useLocation, useNavigate } from 'react-router-dom'
 import api from '../../axios/api'
-import {Snackbar, Alert} from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { dataActions } from '../../state/index'
+import snackbar from '../../components/snackbar/snackbarUtils'
 
 export default function CityLocation(props){
-    const state = useLocation().state;
+    const data = useSelector(state => state.data);
     const navigate = useNavigate();
-    const [snackbar, setSnackbar] = useState({
-        open : false, 
-        message : "",
-        type: ''
-    });
     const [pickUpLocations, setPickupLocations] = useState([]);
     const [dropLocations, setDropLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState({
         selectedPickup : undefined,
         selectedDrop : undefined
     })
-
+    const {setLocations} = bindActionCreators(dataActions,useDispatch())
     useEffect(() => {
-        const sourceCityId = state?.route?.sourceCity?.cityId;
-        const destinationCityId = state?.route?.destinationCity?.cityId;
-        api.get('/buses/locations', {
-            params: {
-                cityId: sourceCityId
-            }
+        const sourceCityId = data?.sourceCity?.cityId;
+        const destinationCityId = data?.destinationCity?.cityId;
+        api.get('/buses/locations', { params: { cityId: sourceCityId }
         }).then(response => {
             console.log('output :: ',response)
             setPickupLocations(response?.data[0]?.locations);
@@ -81,38 +76,15 @@ export default function CityLocation(props){
     }
 
     const proceed = () => {
-        console.log('inside proced')
-        console.log(selectedLocation.selectedPickup)
         if(!selectedLocation.selectedPickup) {
-            console.log('inside if')
-            setSnackbar({
-                open: true,
-                message : "Please select a pickup location",
-                type: 'error'
-            })
-            return;
+            return snackbar.error("Please select a pickup location")            
         } else if(!selectedLocation.selectedDrop){
-            setSnackbar({
-                open: true,
-                message : "Please select a drop location",
-                type: 'error'
-            })
-            return;
+            return snackbar.error("Please select a drop location");
         } 
-
-        navigate('/passenger-details', {
-            state : {
-                ...state, 
-                selectedLocation
-            }
-        })
-
+        setLocations(selectedLocation)
+        navigate('/buses/seats/locations/passengers')
     }
 
-    const closeSnackbar = () => {
-        setSnackbar({ open : false, message: '', type: '' })
-    }
-    
     return (
         <div className='city-location'>
             <div className='page-content'>
@@ -126,17 +98,6 @@ export default function CityLocation(props){
                 text="Confirm & Proceed"
                 onClick = {proceed}
                 />
-            <Snackbar 
-                open={snackbar.open} 
-                autoHideDuration={3500}
-                onClose={closeSnackbar}
-                message = {snackbar.message}
-                anchorOrigin={{vertical: 'top', horizontal:'right'}}
-            > 
-                <Alert onClose={closeSnackbar} severity={snackbar.type} sx={{ width: '70%' }}>
-                    {snackbar.message}
-                    </Alert>
-            </Snackbar>
         </div>
     )
 }

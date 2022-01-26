@@ -5,11 +5,15 @@ import Heading from "../../components/heading/Heading";
 import "./PassengerDetails.css"
 import Passenger from '../../components/passenger/Passenger';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@mui/material';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
+import {dataActions} from '../../state/index'
 
 export default function PasssengerDetails(){
     const state = useLocation().state;
     const navigate = useNavigate();
-
+    const {setPassengerDetails} = bindActionCreators(dataActions, useDispatch())
     const [passengers, setPassengers] = useState([]);
     const [detail, setDetail] = useState({
         name : '',
@@ -24,11 +28,6 @@ export default function PasssengerDetails(){
             [name]: type === 'checkbox' ? checked : value
         }))
     }
-
-    console.log(passengers);
-    console.log(detail);
-
-
     
     const addPassenger = () => {
         setPassengers(prev =>[...prev, detail])
@@ -59,12 +58,8 @@ export default function PasssengerDetails(){
     })
 
     const proceed = () => {
-        navigate('/contact-details',{
-            state : {
-                ...state,
-                passengerDetails : passengers
-            }
-        })        
+        setPassengerDetails(passengers)
+        navigate('/buses/seats/locations/passengers/contact')
     }
 
     return(
@@ -90,23 +85,22 @@ export default function PasssengerDetails(){
                         onChange = {handleChange}
                     />
 
-                    <div className="gender">
-                        <h3>Gender:-</h3>
-                        <div>
-                            <input onChange={handleChange} name='gender' type = 'radio' id="male" value="Male"/>
-                            <label htmlFor='male'>Male</label>
-                        </div>
-                    
-                        <div>
-                            <input onChange={handleChange} name='gender' type = 'radio' id="female" value="Female"/>
-                            <label htmlFor='female'>Female</label>
-                        </div>
-                    
-                        <div>
-                            <input onChange={handleChange} name='gender' type = 'radio' id="other" value="Other"/>
-                            <label htmlFor='other'>Other</label>
-                        </div>
-                    </div>
+                <FormControl className='gender'>
+                    <FormLabel className='gender-label' id="demo-radio-buttons-group-label">Gender</FormLabel>
+                    <RadioGroup
+                        className='gender-buttons'
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="gender"
+                        row
+                        value={detail.gender}
+                        onChange={handleChange}
+                    >
+                        <FormControlLabel value="female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                    </RadioGroup>
+                </FormControl>
                 </div>
             
                 <div onClick={addPassenger} className='add-pasenger-button'>
@@ -116,7 +110,7 @@ export default function PasssengerDetails(){
                 {passengerComponents}
             </div>
             
-            <SecondaryButton onClick={proceed} text="Confirn & Proceed"/>
+            <SecondaryButton onClick={proceed} text="Confirm & Proceed"/>
         </div>     
     )
 }

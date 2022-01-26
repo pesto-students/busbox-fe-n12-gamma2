@@ -6,17 +6,19 @@ import "./SeatLayout.css"
 import BusSeat from "../../components/seat/BusSeat";
 import { useLocation, useNavigate } from "react-router-dom";
 import {getNormalSeatRow, getSleeperSeatRow} from './seatLayoutUtils'
-
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import {dataActions} from '../../state/index'
 export default function SeatLayout(){
     const sleeperRows = [0,1,2,3,4,5,6] 
     const normalRows = [0,1,2,3,4,5,6,7,8,9,10];
-    const state = useLocation().state;
-    const selectedBus = state.selectedBus;
+    const data = useSelector(state => state?.data);
+    const selectedBus = data.selectedBus;
     const isSleeper = selectedBus.isSleeper;
     const rows = isSleeper ? sleeperRows : normalRows;
     const navigate = useNavigate();
     const [selectedSeats, setSelectedSeats] = useState([]);
-
+    const {setSelectedSeats : setInReduxSelectedSeats} = bindActionCreators(dataActions, useDispatch())
     const selectSeat = (seatNumber) => {
         setSelectedSeats(prev => {
             const filtered = prev.filter(prevSeatNumber => prevSeatNumber !== seatNumber)
@@ -33,9 +35,8 @@ export default function SeatLayout(){
 
     const bookSelectedSeats = () => {
         console.log(selectedSeats);
-        navigate('/city-location',{
-            state: {...state, selectedSeats}
-        })
+        setInReduxSelectedSeats(selectedSeats)
+        navigate('/buses/seats/locations')
     }
 
 
@@ -44,9 +45,9 @@ export default function SeatLayout(){
             <div className="page-content">
                 <Heading text="Select Seats"/>
                 <BusCard 
-                    bus={state.selectedBus}
-                    sourceCityName={state.route.sourceCity.cityName}
-                    destinationCityName={state.route.destinationCity.cityName}
+                    bus={data.selectedBus}
+                    sourceCityName={data.sourceCity.cityName}
+                    destinationCityName={data.destinationCity.cityName}
                     onClick={() => console.log('bus card clicked!')}
                 />
                 <div className="seats">

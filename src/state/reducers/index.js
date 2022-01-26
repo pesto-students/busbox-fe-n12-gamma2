@@ -2,13 +2,15 @@ import {combineReducers} from 'redux'
 
 import authReducer from './authReducer'
 import loaderReducer from './loaderReducer'
-import routeReducer from './routeReducer'
+import dataReducer from './dataReducer'
+import snackbarReducer from './snackbarReducer'
 
 const reducers = combineReducers(
     {
         auth : authReducer,
         loader: loaderReducer,
-        route: routeReducer
+        data: dataReducer,
+        snackbar: snackbarReducer
     }
 )
 

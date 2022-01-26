@@ -40,8 +40,8 @@ function getSleeperSeatRow(seatConfig){
 
     return(
         <div key={rowNumber} className="sleeper-row">
-            {getDeck(rowNumber+1, rowNumber+2, rowNumber+3)}
-            {getDeck(rowNumber+4, rowNumber+5, rowNumber+6)}
+            {getDeck(rowNumber, rowNumber+1, rowNumber+2)}
+            {getDeck(rowNumber+3, rowNumber+4, rowNumber+5)}
         </div>
     )
 }

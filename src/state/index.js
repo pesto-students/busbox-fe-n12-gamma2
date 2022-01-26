@@ -1,10 +1,11 @@
 import * as loaderActions from './action-creators/loaderActions'
 import * as authActions from './action-creators/authActions'
-import * as routeActions from './action-creators/routeActions'
-
+import * as dataActions from './action-creators/dataActions'
+import * as snackbarActions from './action-creators/snackbarActions'
 // module.export = authActions;
 export {
     loaderActions,
     authActions,
-    routeActions
+    dataActions,
+    snackbarActions
 }

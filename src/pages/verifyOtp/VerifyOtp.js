@@ -21,7 +21,7 @@ export default function VerifyOtp(){
 
             </div>
             
-            <SecondaryButton text="Confirn & Cancel"/>
+            <SecondaryButton text="Confirm & Cancel"/>
 
         </div>     
     )

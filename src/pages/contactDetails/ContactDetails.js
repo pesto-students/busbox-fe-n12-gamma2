@@ -5,10 +5,13 @@ import SecondaryButton from '../../components/buttons/secondaryButton/SecondaryB
 import './ContactDetails.css'
 import '../../App.css'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { useDispatch } from 'react-redux'
+import {dataActions} from '../../state/index'
 
 export default function ContactDetails(){
-    const state = useLocation().state;
     const navigate = useNavigate()
+    const {setContactDetails: setInReduxContactDetails} = bindActionCreators(dataActions, useDispatch())
     const [contactDetails, setContactDetails] = useState({
         email: '',
         phoneNumber: ''
@@ -24,12 +27,8 @@ export default function ContactDetails(){
     }
     
     const proceed = () => {
-        navigate('/verify-details',{
-            state: {
-                ...state,
-                contactDetails
-            }
-        })
+        setInReduxContactDetails(contactDetails)
+        navigate('/buses/seats/locations/passengers/contact/verify')
     }
 
     return (
@@ -57,7 +56,7 @@ export default function ContactDetails(){
                     <p>Note : Booking Details will be sent to above email & phone</p>
                 </div>
             </div>
-            <SecondaryButton onClick={proceed} text="Confirn & Proceed"/>
+            <SecondaryButton onClick={proceed} text="Confirm & Proceed"/>
         </div>
     )
 }

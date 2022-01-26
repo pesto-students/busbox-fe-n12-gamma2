@@ -6,25 +6,25 @@ import Details from '../../components/details/Details'
 import { useLocation } from 'react-router-dom'
 import {getAllDetails, getLocationString} from './detailUtils'
 import api from '../../axios/api'
+import { useSelector } from 'react-redux'
 
 
 export default function VerifyDetails(){
 
-    const state = useLocation().state;
-    console.log(state);
-    const data = getAllDetails(state);
-    
+    const data = useSelector(state => state.data);
+    console.log(data);
+    const verificationData = getAllDetails(data);    
     
     const request =  { 
-        busId: state?.selectedBus?.busId,
-        selectedSeats: state?.selectedSeats,
-        sourceCity: state?.route?.sourceCity?.cityName,
-        destinationCity: state?.route?.destinationCity?.cityName,
-        journeyDate: state?.route?.date,
-        pickupLocation: getLocationString(state?.selectedLocation?.selectedPickup),
-        dropLocation: getLocationString(state?.selectedLocation?.selectedDrop),
-        passengerDetails: state?.passengerDetails?.map(detail => ({...detail, age:Number.parseInt(detail.age)})),
-        contactDetails: {...state?.contactDetails, phone: state?.contactDetails?.phoneNumber}
+        busId: data?.selectedBus?.busId,
+        selectedSeats: data?.selectedSeats,
+        sourceCity: data?.sourceCity?.cityName,
+        destinationCity: data?.destinationCity?.cityName,
+        journeyDate: data?.userInputDate,
+        pickupLocation: getLocationString(data?.selectedPickup),
+        dropLocation: getLocationString(data?.selectedDrop),
+        passengerDetails: data?.passengerDetails?.map(detail => ({...detail, age:Number.parseInt(detail.age)})),
+        contactDetails: {email: data?.contactDetails?.email, phone: data?.contactDetails?.phoneNumber}
       }
     const proceed = () => {
 
@@ -43,7 +43,7 @@ export default function VerifyDetails(){
         <div className='verify-details'>
             <div className='page-content'>
                 <Heading text='Verify All Details'/>
-                <Details data={data} />
+                <Details data={verificationData} />
             </div>
             <SecondaryButton onClick={proceed} text='Continue To Payment'/>
         </div>

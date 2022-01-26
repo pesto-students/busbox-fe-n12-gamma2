@@ -28,37 +28,37 @@ const sidebarData = [
     },
     {
         title: 'Seat Layout',
-        path: '/seat-layout',
+        path: '/buses/seats',
         icon: require('../../icons/about.png')
     },
     {
         title: 'passenger',
-        path: '/passenger-details',
+        path: '/buses/seats/locations/passengers',
         icon: require('../../icons/about.png')
     },
     {
         title: 'contactdetails',
-        path: '/contact-details',
+        path: '/buses/seats/locations/passengers/contact',
         icon: require('../../icons/about.png')
     },
     {
         title: 'verifyotp',
-        path: '/verify-otp',
+        path: '/bookings/details/cancel/verify',
         icon: require('../../icons/about.png')
     },
     {
         title: 'verifydetails',
-        path: '/verify-details',
+        path: '/buses/seats/locations/passengers/contact/verify',
         icon: require('../../icons/about.png')
     },
     {
         title: 'bookingdetails',
-        path: '/booking-details',
+        path: '/bookings/details',
         icon: require('../../icons/about.png')
     },
     {
         title: 'citylocation',
-        path: '/city-location',
+        path: '/buses/seats/locations',
         icon: require('../../icons/about.png')
     },
     {
