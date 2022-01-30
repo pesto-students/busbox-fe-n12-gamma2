@@ -12,13 +12,13 @@ const reducer = (state = initialState, action) => {
         case actionNames.SET_CURRENT_ROUTE :  
             return {...state, ...action.payload}
         case actionNames.SET_FOUND_BUSES :  
-            return {...state, buses: [...action.payload]}
+            return {...state, buses: action.payload}
         case actionNames.SET_SELECTED_BUS :  
             return {...state, selectedBus: action.payload}
         case actionNames.SET_BUS_ROUTE :  
             return {...state, ...action.payload}
         case actionNames.SET_SELECTED_SEATS :  
-            return {...state, selectedSeats: [...action.payload]}
+            return {...state, selectedSeats: action.payload}
         case actionNames.SET_LOCATIONS :  
             return {...state, ...action.payload}
         case actionNames.SET_PASSENGER_DETAILS :  
@@ -27,6 +27,10 @@ const reducer = (state = initialState, action) => {
             return {...state, contactDetails: action.payload}
         case actionNames.SET_REQUEST :  
             return {...state, request: action.payload}
+        case actionNames.SET_BOOKINGS :  
+            return {...state, bookings: action.payload}
+        case actionNames.SET_SELECTED_BOOKING :  
+            return {...state, selectedBooking: action.payload}
         default: 
             return state;
     }

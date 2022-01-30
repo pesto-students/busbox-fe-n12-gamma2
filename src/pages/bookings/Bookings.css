@@ -8,6 +8,7 @@
     align-content: center;
     position: absolute;
     right: 0%;
+    top: 9.5%;
     margin: 0.9rem 2rem;
     background-color: white;
 }
@@ -33,18 +34,26 @@
     text-align: center;
 }
 
-.heading-section {
-    display: flex;
-    margin-top: 0.5rem;
-    align-items: top;
-    background-color: aqua;
-    justify-content: flex-start;
-}
-
 .bookings-list {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
     margin-top: 1rem;
+}
+
+.heading-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.refresh {
+    width: 1.5rem;
+}
+
+.no-bookings {
+    position: fixed;
+    top: 50%;
+    
 }

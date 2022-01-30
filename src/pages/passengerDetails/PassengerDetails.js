@@ -4,17 +4,19 @@ import SecondaryButton from "../../components/buttons/secondaryButton/SecondaryB
 import Heading from "../../components/heading/Heading";
 import "./PassengerDetails.css"
 import Passenger from '../../components/passenger/Passenger';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@mui/material';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {dataActions} from '../../state/index'
+import snackbar from '../../components/snackbar/snackbarUtils'
 
 export default function PasssengerDetails(){
-    const state = useLocation().state;
     const navigate = useNavigate();
     const {setPassengerDetails} = bindActionCreators(dataActions, useDispatch())
-    const [passengers, setPassengers] = useState([]);
+    const data = useSelector(state => state?.data);
+    const [passengers, setPassengers] = useState(data.passengerDetails || []);
+
     const [detail, setDetail] = useState({
         name : '',
         age : '',
@@ -30,14 +32,32 @@ export default function PasssengerDetails(){
     }
     
     const addPassenger = () => {
+        console.log(detail);
+        window.detail = detail;
+        if(!detail.name.trim()){
+            return snackbar.error('Enter name of the passenger');
+        }
+        const age = Number.parseInt(detail.age)
+        
+        if(Number.isNaN(age) || age <= 0 || age >= 100){
+            return snackbar.error('Invalid Age');
+        }
+
+        if(!detail.gender){
+            return snackbar.error('Select a Gender');
+        }
+
+        const seats = data.selectedSeats.length;
+
+        if(passengers.length >= seats){
+            return snackbar.error(`Selected Seats are ${seats}\nMust add EXACTLY ${seats} passenger(s)`);
+        }
         setPassengers(prev =>[...prev, detail])
-        setDetail(prevDetail => {
-            return {...prevDetail, name: '', age: ''}
-        })
+        
+        setDetail( {gender: '', name: '', age: ''})
     }
 
     const deletePassenger = (index) => {
-        console.log('deletePassenger, called', index);
         setPassengers(prev => {
             prev.splice(index, 1)
             return [...prev] 
@@ -58,6 +78,18 @@ export default function PasssengerDetails(){
     })
 
     const proceed = () => {
+        const seats = data.selectedSeats.length;
+        if( seats != passengers.length){
+            return snackbar.error(`Selected Seats are ${seats}\nMust add EXACTLY ${seats} passenger(s)`);
+        }
+
+        const numberOfRFLSeats = data.selectedSeats.filter(seat => seat.status.toLowerCase() === 'reserved for ladies').length;
+        const numberOfFemalePassengers = passengers.filter(passenger => passenger.gender.toLowerCase() === 'female').length;
+
+        if (numberOfFemalePassengers < numberOfRFLSeats) {
+            return snackbar.error(`${numberOfRFLSeats} Reserved for ladies seat selected\nMust add ${numberOfRFLSeats} Female passenger(s)`);
+        }
+
         setPassengerDetails(passengers)
         navigate('/buses/seats/locations/passengers/contact')
     }
@@ -96,9 +128,9 @@ export default function PasssengerDetails(){
                         value={detail.gender}
                         onChange={handleChange}
                     >
-                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="other" control={<Radio />} label="Other" />
+                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
                 </FormControl>
                 </div>

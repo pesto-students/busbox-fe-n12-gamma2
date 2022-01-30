@@ -115,6 +115,15 @@ export default function Home(){
         })
     }
 
+    const swap = () => {
+        setSearchInput(prev => {
+            return {
+                ...prev,
+                sourceCity : prev.destinationCity,
+                destinationCity : prev.sourceCity,
+            }
+        })
+    }
     return(
         <div className="home-page">
             <Heading text="Choose Source & Destination"/>
@@ -127,7 +136,7 @@ export default function Home(){
                     placeholder="Source City" 
                     icon={require("../../icons/city.png")}
                     />
-                <img className='swap-icon' src={require("../../icons/city-swap.png")}/>
+                <img onClick={swap} className='swap-icon' src={require("../../icons/city-swap.png")}/>
                 <InputBox
                     onChange={handleChange}
                     name='destinationCity' 

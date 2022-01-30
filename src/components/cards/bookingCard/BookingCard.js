@@ -1,19 +1,31 @@
 import React from 'react'
 import './BookingCard.css'
 import StatusChip from '../../chips/statusChip/StatusChip'
-
+import * as commonUtils from '../../../pages/commonUtils'
+import moment from 'moment'
 export default function BoookingCard (props) {
-    return (
-        <div className='booking-card'>
+    const details = props.details;
+    console.log(details);
+    const journeyDate = moment(details.journeyDate,'DD/MM/YYYY');
+    const today = moment();
+    const isCancelled = details.bookingStatus.toLowerCase() === 'cancelled'
+    const status = isCancelled ? 
+            'cancelled'
+        : journeyDate < today ?
+            'completed'
+        :   'upcoming'
+
+        return (
+        <div onClick={() => props.onClick(props.index)} className='booking-card'>
             <div className='row1'>
-                <h3>Banglore</h3>
+                <h3>{commonUtils.capitalize(details.sourceCity)}</h3>
                 <img className='arrow-icon' src={require('../../../icons/arrow-right-blue.png')}/>
-                <h3>Chennai</h3>
+                <h3>{commonUtils.capitalize(details.destinationCity)}</h3>
             </div>
             <div className='row2'>
-                <p>28 Dec 2021</p>
-                <StatusChip status={props.status}/>
-                <p>A/C Sleeper (2+1)</p>
+                <p>{moment(journeyDate, "DD/MM/YYYY").format('DD MMM YYYY')}</p>
+                <StatusChip status={status}/>
+                <p>{details.busType}</p>
             </div>
             <div></div>
         </div>

@@ -67,3 +67,16 @@ export const setRequest = (request) => {
     })
 }
 
+export const setBookings = (bookings) => {
+    return (dispatch) => dispatch({
+        type: actionNames.SET_BOOKINGS,
+        payload: bookings
+    })
+}
+
+export const setSelectedBooking = (booking) => {
+    return (dispatch) => dispatch({
+        type: actionNames.SET_SELECTED_BOOKING,
+        payload: booking
+    })
+}

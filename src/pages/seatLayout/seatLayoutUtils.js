@@ -1,96 +1,89 @@
 import React from 'react'
 import BusSeat from '../../components/seat/BusSeat';
 
-function getSleeperSeatRow(seatConfig){
-    const {   row,
-        seatStatuses,
-        selectSeat,
-        deselectSeat
-    } = seatConfig;
-    const rowNumber = row*6
-    const getDeck = (a, b, c) => {
-        return (
-            <div className="sleeper-deck">
-                <div className="sleeper-twin">
-                    <BusSeat 
-                        status={seatStatuses[a].status} 
-                        seatNumber={seatStatuses[a].seatNumber}
-                        isSleeper={true}
-                        selectSeat={selectSeat}
-                        deselectSeat={deselectSeat}
-                    />
-                    <BusSeat 
-                        status={seatStatuses[b].status} 
-                        seatNumber={seatStatuses[b].seatNumber}
-                        isSleeper={true}
-                        selectSeat={selectSeat}
-                        deselectSeat={deselectSeat}
-                    />
-                </div>
-                <BusSeat 
-                    status={seatStatuses[c].status} 
-                    seatNumber={seatStatuses[c].seatNumber}
-                    isSleeper={true}
-                    selectSeat={selectSeat}
-                    deselectSeat={deselectSeat}
-                />
-            </div>
-        )
-    } 
+function getSeat(isSleeper, index, seatConfig) {
+    const {seatStatuses, selectedSeats, selectSeat, deselectSeat} = seatConfig;
+    const seatNumber = seatStatuses[index].seatNumber;
+    const currentSeatStatus = selectedSeats.find(seat => seat.seatNumber === seatNumber);
+    const isSelected = currentSeatStatus ? true : false;
+    return (
+        <BusSeat 
+            status={seatStatuses[index].status} 
+            seatNumber={seatNumber}
+            isSleeper={isSleeper}
+            selectSeat={selectSeat}
+            deselectSeat={deselectSeat}
+            isSelected = {isSelected}
+        />
+    )
+} 
 
+const getDeck = (a, b, c, seatConfig) => {
+    return (
+        <div className="sleeper-deck">
+            <div className="sleeper-twin">
+                {getSeat(true, a, seatConfig)}
+                {getSeat(true, b, seatConfig)}
+            </div>
+            {getSeat(true, c, seatConfig)}
+        </div>
+    )
+} 
+
+function getSleeperSeatRow(seatConfig){
+    const { row } = seatConfig;
+    const rowNumber = row*6
     return(
         <div key={rowNumber} className="sleeper-row">
-            {getDeck(rowNumber, rowNumber+1, rowNumber+2)}
-            {getDeck(rowNumber+3, rowNumber+4, rowNumber+5)}
+            {getDeck(rowNumber, rowNumber+1, rowNumber+2, seatConfig)}
+            {getDeck(rowNumber+3, rowNumber+4, rowNumber+5, seatConfig)}
+        </div>
+    )
+}
+
+const getSide = (a, b, seatConfig) => {
+    return (
+        <div className="normal-twin">
+            {getSeat(false, a, seatConfig)}
+            {getSeat(false, b, seatConfig)}
         </div>
     )
 }
 
 function getNormalSeatRow(seatConfig){
-    const {   row,
-        isLastRow,
-        seatStatuses,
-        selectSeat,
-        deselectSeat
-    } = seatConfig;
-
+    const { row, isLastRow } = seatConfig;
     const showMiddleSeat = isLastRow;
     const rowNumber = row*4
-
-    const getSide = (a, b) => {
-        return (
-            <div className="normal-twin">
-                <BusSeat 
-                    status={seatStatuses[a].status} 
-                    seatNumber={seatStatuses[a].seatNumber}
-                    isSleeper={false}
-                    selectSeat={selectSeat}
-                    deselectSeat={deselectSeat}
-                />
-                <BusSeat 
-                    status={seatStatuses[b].status} 
-                    seatNumber={seatStatuses[b].seatNumber}
-                    isSleeper={false}
-                    selectSeat={selectSeat}
-                    deselectSeat={deselectSeat}
-                />
-            </div>
-        )
-    }
-    return(
+    return (
         <div key={row} className="normal-row">
-            {getSide(rowNumber, rowNumber+1)}
-            {showMiddleSeat && 
-                <BusSeat  
-                    status={seatStatuses[rowNumber+4].status}
-                    seatNumber={seatStatuses[rowNumber+4].seatNumber}
-                    isSleeper={false}
-                    selectSeat={selectSeat}
-                    deselectSeat={deselectSeat}
-                />}
-            {getSide(rowNumber+2, rowNumber+3)}
+            {getSide(rowNumber, rowNumber+1, seatConfig)}
+            {showMiddleSeat && getSeat(false, b, seatConfig)}
+            {getSide(rowNumber+2, rowNumber+3, seatConfig)}
         </div>
     )
 }
 
-export {getNormalSeatRow, getSleeperSeatRow}
+function getSeatInfo(isSleeper){
+    return (
+        <div className="seat-info-container">
+            <div className="seat-info">
+                <BusSeat isSleeper={isSleeper} isDummy={true} status='booked'/>
+                <p>Booked</p>
+            </div>
+            <div className="seat-info">
+                <BusSeat isSleeper={isSleeper} isDummy={true} status='available'/>
+                <p>Available</p>
+            </div>
+            <div className="seat-info">
+                <BusSeat isSleeper={isSleeper} isDummy={true} status='selected'/>
+                <p>Selected</p>
+            </div>
+            <div className="seat-info">
+                <BusSeat isSleeper={isSleeper} isDummy={true} status='reserved for ladies'/>
+                <p>Reserved for Ladies</p>
+            </div>
+        </div>
+    )
+}
+
+export {getNormalSeatRow, getSleeperSeatRow, getSeatInfo}

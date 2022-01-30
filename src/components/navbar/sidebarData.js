@@ -43,7 +43,7 @@ const sidebarData = [
     },
     {
         title: 'verifyotp',
-        path: '/bookings/details/cancel/verify',
+        path: '/bookings/details/cancel',
         icon: require('../../icons/about.png')
     },
     {

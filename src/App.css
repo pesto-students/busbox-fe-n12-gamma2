@@ -3,6 +3,17 @@ html, body, #root, .main-container {
     height: 100vh;
     font-family: 'Roboto', serif;
 }
+/* @media all and (min-width: 600px) {
+    html {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+
+  } */
+
+
+
+
 
 .pages-container{
     height: 85%;

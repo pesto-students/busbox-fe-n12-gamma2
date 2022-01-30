@@ -6,3 +6,10 @@ export const setAccessToken = (token) => {
         payload : token
     })
 }
+
+export const setSignupData = (data) => {
+    return (dispatch) => dispatch({
+        type: actionNames.SET_SIGNUP_DATA,
+        payload : data
+    })
+}

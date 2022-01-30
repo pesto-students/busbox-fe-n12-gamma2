@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Bookings from './pages/Bookings/Bookings'
 import Navbar from './components/Navbar/Navbar'
@@ -13,7 +13,6 @@ import Error from  './pages/error/Error'
 import VerifyDetails from  './pages/verifyDetails/VerifyDetails'
 import BookingDetails from  './pages/bookingDetails/BookingDetails'
 import CityLocation from  './pages/cityLocation/CityLocation'
-import CancelBooking from './pages/cancelBooking/CancelBooking'
 import CancelConfirmation from './pages/cancelConfirmation/CancelConfirmation'
 import './App.css'
 import NotFound from './pages/notFound/NotFound'
@@ -21,15 +20,21 @@ import {useSelector} from 'react-redux'
 import Buses from './pages/buses/Buses'
 import Breadcrumbs from './Breadcrumbs'
 import Snackbar from './components/snackbar/Snackbar'
+import HandleSuccess from './pages/handleSuccess/HandleSuccess'
+
+
 function App () {
     const state = useSelector(state => state)
     return (
+      
         <div className='main-container'>
+        
             <Navbar />
             <div className= {`loader ${state?.loader?.isLoading ? 'visible' : 'hidden'}`}>
                 <img alt='Loading...' src={require('./icons/Loading.gif')} />
                 <h4>Loading . . .</h4>
             </div>
+            
             <Breadcrumbs/>
             <div className='pages-container'>
                 <Routes>
@@ -44,46 +49,22 @@ function App () {
                     <Route exact path="/buses/seats/locations/passengers" element={<PassengerDetails/>} />
                     <Route exact path="/buses/seats/locations/passengers/contact" element={<ContactDetails/>} />
                     <Route exact path="/buses/seats/locations/passengers/contact/verify" element={<VerifyDetails/>} />
+                    <Route exact path='booking-failed' element={<Navigate to='/buses/seats/locations/passengers/contact/verify'/>}/>
 
                     <Route exact path="/bookings" element={<Bookings/>} />
                     <Route exact path="/bookings/details" element={<BookingDetails/>} />
-                    <Route exact path="/bookings/details/cancel" element={<CancelBooking/>} />
-                    <Route exact path="/bookings/details/cancel/verify" element={<VerifyOtp/>} />
+                    <Route exact path="/bookings/details/:bookingId" element={<HandleSuccess/>} />
+                    <Route exact path="/bookings/details/cancel" element={<VerifyOtp/>} />
                     <Route exact path="/cancel-confirmation" element={<CancelConfirmation/>} />
 
                     <Route exact path="/error" element={<Error/>} />
                     <Route exact path="/not-found" element={<NotFound/>} />
-                    {/* <Route path="/busnotfound" element={<BusNotFound/>} /> */}
                 </Routes>
             </div>
             <Snackbar/>
         </div>
+       
     )
 }
-
-// location page
-// verify details
-// bookings list 
-// booking details
-// alert info toast 
-// something went wrong
-// no buses found 
-
-//Done
-// passenger details
-// contact details
-// otp verification page
-
-{/* <div style={{paddingLeft: '2rem', paddingTop: '1rem'}} className='history'>
- <span> Home </span> > 
-<span> Buses </span> > 
-<span> Seats </span> > 
-<span> Pickup & Drop </span> > 
-<span> Passengers </span> > 
-<span> Contact </span> > 
-<span> Verity </span> > 
-</div> */}
-
-
 
 export default App

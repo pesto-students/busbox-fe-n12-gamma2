@@ -19,6 +19,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding-top: 0.8rem;
 }
 
 .sleeper-deck, .normal-twin {
@@ -75,4 +76,8 @@
 
 .deck-info h4{
     margin: 0;
+}
+
+.normal-seats-container {
+    padding-top: 1rem;
 }

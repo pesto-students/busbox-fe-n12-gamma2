@@ -4,8 +4,8 @@ import './BusSeat.css'
 
 export default function BusSeat(props){
     const clName = props.isSleeper ? 'sleeper-seat' : 'normal-seat';
-    const [isSelected, setIsSelected] = useState(false);
-    const [status, setStatus] = useState(props.status);
+    const [isSelected, setIsSelected] = useState(props.isSelected);
+    const [status, setStatus] = useState(isSelected ? 'selected' : props.status);
     const initialStatus = props.status.toLowerCase()
 
     const toggleSelection = () => {

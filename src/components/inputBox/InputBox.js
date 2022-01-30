@@ -8,11 +8,10 @@ export default function InputBox(props){
     const hidePwdIcon = require('../../icons/hide-password.png')
     const togglePasswordVisibility = () => setShowPassword(visible => !visible)
 
-
     return(
         <div className="input-box">
             <img className="input-box-icon" src={props.icon}/>
-            <input 
+            <input
                 value={props.value} 
                 name={props.name} 
                 onChange={props.onChange} 

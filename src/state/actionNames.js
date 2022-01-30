@@ -1,5 +1,6 @@
 export default {
     SET_ACCESS_TOKEN : 'setAccessToken',
+    SET_SIGNUP_DATA : 'setSignupData',
     TOGGLE_LOADER: 'toggleLoader',
     SET_CURRENT_ROUTE: 'setRouteDetails',
     SHOW_SNACKBAR: 'showSnackbar',
@@ -11,5 +12,7 @@ export default {
     SET_LOCATIONS: 'setLocations',
     SET_PASSENGER_DETAILS: 'setPassengerDetails',
     SET_CONTACT_DETAILS: 'setContactDetails',
-    SET_REQUEST: 'setRequest'
+    SET_REQUEST: 'setRequest',
+    SET_BOOKINGS: 'setBookings',
+    SET_SELECTED_BOOKING: 'setSelectedBooking'
 }

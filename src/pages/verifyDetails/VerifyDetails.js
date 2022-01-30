@@ -17,7 +17,8 @@ export default function VerifyDetails(){
     
     const request =  { 
         busId: data?.selectedBus?.busId,
-        selectedSeats: data?.selectedSeats,
+        busType: data?.selectedBus?.busType,
+        selectedSeats: data?.selectedSeats?.map(seat => seat.seatNumber),
         sourceCity: data?.sourceCity?.cityName,
         destinationCity: data?.destinationCity?.cityName,
         journeyDate: data?.userInputDate,
@@ -26,6 +27,7 @@ export default function VerifyDetails(){
         passengerDetails: data?.passengerDetails?.map(detail => ({...detail, age:Number.parseInt(detail.age)})),
         contactDetails: {email: data?.contactDetails?.email, phone: data?.contactDetails?.phoneNumber}
       }
+      console.warn('booking request ::: - ', request);
     const proceed = () => {
 
 
@@ -35,7 +37,7 @@ export default function VerifyDetails(){
         .then(result => {
             window.location.replace(result.data.url)
         }).catch(err => {
-            console.err('eerr ::', err);
+            console.error('eerr ::', err);
         })
     }
 

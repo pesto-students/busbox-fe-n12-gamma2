@@ -16,8 +16,8 @@ export default function CityLocation(props){
     const [pickUpLocations, setPickupLocations] = useState([]);
     const [dropLocations, setDropLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState({
-        selectedPickup : undefined,
-        selectedDrop : undefined
+        selectedPickup : data.selectedPickup,
+        selectedDrop : data.selectedDrop
     })
     const {setLocations} = bindActionCreators(dataActions,useDispatch())
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function CityLocation(props){
                 onClick = {selectPickupLocation}
                 index = {index} 
                 address = {`${location.locationName}, ${location.address}`}
-                isSelected = {selectedLocation.selectedPickup?._id === pickUpLocations[index]._id}
+                isSelected = {selectedLocation.selectedPickup?.address === pickUpLocations[index].address}
                 //TODO :: handle departure time for each location 
             />
         )
@@ -69,7 +69,7 @@ export default function CityLocation(props){
                 onClick = {selectDropLocation}
                 index = {index} 
                 address = {`${location.locationName}, ${location.address}`}
-                isSelected = {selectedLocation.selectedDrop?._id === dropLocations[index]._id}
+                isSelected = {selectedLocation.selectedDrop?.address === dropLocations[index].address}
                 //TODO :: handle departure time for each location 
             />
         )
