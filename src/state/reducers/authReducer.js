@@ -2,6 +2,7 @@ import actionNames from '../actionNames'
 
 const initialState = {
     accessToken : null,
+    email: null,
     signupData : {       
         fullname: '',
         email: '',
@@ -16,6 +17,8 @@ const reducer = (state = initialState, action) => {
             return {...state, accessToken: action.payload}
         case actionNames.SET_SIGNUP_DATA :  
             return {...state, signupData: action.payload}
+        case actionNames.SET_EMAIL :  
+            return {...state, email: action.payload}
         default: 
             return state;
     }

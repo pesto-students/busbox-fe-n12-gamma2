@@ -1,19 +1,24 @@
 import React from 'react'
 import BusSeat from '../../components/seat/BusSeat';
 
-function getSeat(isSleeper, index, seatConfig) {
-    const {seatStatuses, selectedSeats, selectSeat, deselectSeat} = seatConfig;
-    const seatNumber = seatStatuses[index].seatNumber;
-    const currentSeatStatus = selectedSeats.find(seat => seat.seatNumber === seatNumber);
-    const isSelected = currentSeatStatus ? true : false;
+function getSeat(index, seatConfig) {
+    const {
+        isSleeper, selectedSeats, bookedSeats, 
+        reservedForLadiesSeats, toggleSeatSelection
+    } = seatConfig;
+    console.log(seatConfig);
+    const isBooked = bookedSeats.includes(index);
+    const isSelected = selectedSeats.includes(index);
+    console.log(isSelected, selectedSeats);
+    const isReserved = reservedForLadiesSeats.includes(index); 
     return (
         <BusSeat 
-            status={seatStatuses[index].status} 
-            seatNumber={seatNumber}
+            seatNumber={index}
             isSleeper={isSleeper}
-            selectSeat={selectSeat}
-            deselectSeat={deselectSeat}
+            isBooked={isBooked}
+            isReserved={isReserved}
             isSelected = {isSelected}
+            onClick={toggleSeatSelection}
         />
     )
 } 
@@ -22,10 +27,10 @@ const getDeck = (a, b, c, seatConfig) => {
     return (
         <div className="sleeper-deck">
             <div className="sleeper-twin">
-                {getSeat(true, a, seatConfig)}
-                {getSeat(true, b, seatConfig)}
+                {getSeat(a, seatConfig)}
+                {getSeat(b, seatConfig)}
             </div>
-            {getSeat(true, c, seatConfig)}
+            {getSeat(c, seatConfig)}
         </div>
     )
 } 
@@ -35,8 +40,8 @@ function getSleeperSeatRow(seatConfig){
     const rowNumber = row*6
     return(
         <div key={rowNumber} className="sleeper-row">
-            {getDeck(rowNumber, rowNumber+1, rowNumber+2, seatConfig)}
-            {getDeck(rowNumber+3, rowNumber+4, rowNumber+5, seatConfig)}
+            {getDeck(rowNumber+1, rowNumber+2, rowNumber+3, seatConfig)}
+            {getDeck(rowNumber+4, rowNumber+5,rowNumber+6,  seatConfig)}
         </div>
     )
 }
@@ -44,8 +49,8 @@ function getSleeperSeatRow(seatConfig){
 const getSide = (a, b, seatConfig) => {
     return (
         <div className="normal-twin">
-            {getSeat(false, a, seatConfig)}
-            {getSeat(false, b, seatConfig)}
+            {getSeat(a, seatConfig)}
+            {getSeat(b, seatConfig)}
         </div>
     )
 }
@@ -57,11 +62,25 @@ function getNormalSeatRow(seatConfig){
     return (
         <div key={row} className="normal-row">
             {getSide(rowNumber, rowNumber+1, seatConfig)}
-            {showMiddleSeat && getSeat(false, b, seatConfig)}
+            {showMiddleSeat && getSeat(rowNumber+4, seatConfig)}
             {getSide(rowNumber+2, rowNumber+3, seatConfig)}
         </div>
     )
 }
+
+const getSeatLayout = (seatConfig) => {
+    const numberOfRows = seatConfig.numberOfRows;
+    const rows = new Array(numberOfRows).fill(0).map((item, index) => index)
+    console.log(rows);
+    return (
+        rows.map( (row, index, array) => {
+            seatConfig['row'] = row;
+            seatConfig['isLastRow'] = index === array.length - 1;
+            return seatConfig.isSleeper ? getSleeperSeatRow(seatConfig)
+            : getNormalSeatRow(seatConfig) 
+        }
+    )
+)}
 
 function getSeatInfo(isSleeper){
     return (
@@ -79,11 +98,18 @@ function getSeatInfo(isSleeper){
                 <p>Selected</p>
             </div>
             <div className="seat-info">
-                <BusSeat isSleeper={isSleeper} isDummy={true} status='reserved for ladies'/>
+                <BusSeat isSleeper={isSleeper} isDummy={true} status='reserved'/>
                 <p>Reserved for Ladies</p>
             </div>
         </div>
     )
 }
 
-export {getNormalSeatRow, getSleeperSeatRow, getSeatInfo}
+export {getSeatLayout, getSeatInfo}
+// const seatConfig = {
+//     row,
+//     isLastRow: index === array.length - 1,
+//     selectedSeats : selectedSeats,
+//     selectSeat,
+//     deselectSeat,
+// }

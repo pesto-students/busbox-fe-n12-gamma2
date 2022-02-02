@@ -4,6 +4,9 @@
     flex-direction: column;
     align-items: center;
     padding: 0 3em;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
 }
 
 .city-input{
@@ -28,6 +31,7 @@
     align-items: center;
     width: 80%;
     margin: 2.5rem 0;
+    z-index: 0;
 }
 
 .MuiFormControl-root {

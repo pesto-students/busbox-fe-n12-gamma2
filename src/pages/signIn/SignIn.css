@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 
-.btn-google{
+.btn-google, .btn-guest{
     height: 4rem;
     width: 13rem;
     display: flex;
@@ -17,10 +17,3 @@
     width:2rem;
     height:2rem;
 } 
-
-.btn-guest{
-    height: 4rem;
-    width: 13rem;
-    display: flex;
-    align-items: center;
-}

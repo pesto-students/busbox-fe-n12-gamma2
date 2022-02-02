@@ -11,7 +11,7 @@ export default function Buses(){
     const navigate = useNavigate();
     const data = useSelector(state => state.data)
     console.log('data in buses', data)
-    const {setSelectedBus, setBusRoute} = bindActionCreators(dataActions, useDispatch())
+    const {setSelectedBus, setBusRoute, setSelectedSeats} = bindActionCreators(dataActions, useDispatch())
 
     const sourceCityName = data.userInputSourceCity;
     const destinationCityName = data.userInputDestinationCity;
@@ -23,6 +23,7 @@ export default function Buses(){
         const destinationCity = selectedBus.busRoute.filter(city => city.cityName === destinationCityName)[0];
         
         setSelectedBus(selectedBus),
+        setSelectedSeats([])
         setBusRoute({sourceCity, destinationCity})
         navigate('/buses/seats')
     }

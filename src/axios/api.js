@@ -34,6 +34,7 @@ api.interceptors.response.use((res) => {
         type: actionNames.TOGGLE_LOADER,
         payload: false
     });
+    console.log('from interceptor', error.response, error.config, error.request);
     if((error?.response?.data?.message==='unauthorized' && error?.response?.status === 401) || error?.response?.status===403){
         return api.post('/auth/refresh')
         .then(response => {

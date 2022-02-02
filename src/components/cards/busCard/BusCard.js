@@ -14,12 +14,12 @@ export default function BusCard(props){
             destinationCityName : props.destinationCityName
         }
     );
-    
+    const busHeading = `${thisBus.busType} ${thisBus.aminities.includes('A/C') ? 'A/C' : 'Non A/C'} ${thisBus.isSleeper? 'Sleeper' : 'Seater'}`
     return(
             <div onClick={ () => props.onClick(thisBus.busId) } className="card-bus"> 
 {/* Bus Name & Rating */}
                 <div className="card-bus-row1">
-                    <p className="bus-name">{`${thisBus.busType} (${thisBus.seatLayout})`}</p>
+                    <p className="bus-name">{busHeading}</p>
                     <div className="rating">
                         <div className="rating-text rating-avg">{thisBus.ratings?.rating || '1.0'}</div>
                         <div className="rating-text rating-voters">{thisBus.ratings?.totalRatings || '00'}</div>

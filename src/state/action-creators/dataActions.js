@@ -80,3 +80,10 @@ export const setSelectedBooking = (booking) => {
         payload: booking
     })
 }
+
+export const resetData = booking => {
+    return dispatch => dispatch({
+        type: actionNames.RESET_DATA,
+        payload: null
+    })
+}

@@ -1,26 +1,27 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
-import sidebarData from './sidebarData';
+import sidebarData from '../sidebarData';
 import './Navbar.css';
+import '../controller.css'
 
 function Navbar () {
 
     const [sidebar, setSidebar] = useState(false);
-    
     const toggleSidebar = () => setSidebar(shown => !shown);
 
+
     return (
-        <div className='navbar-container'>
+        <div className='mobile-navbar'>
              <div className="navbar">
-                <img onClick={toggleSidebar} alt="Ham" className='navbar-icons' src={require("../../icons/hamburger.png")}/>
+                <img onClick={toggleSidebar} alt="Ham" className='navbar-icons' src={require("../../../icons/hamburger.png")}/>
                 <Link to='/'>
-                    <img alt="logo" className="logo-img"  src={require("../../icons/busbox.png")}/>
+                    <img alt="logo" className="logo-img"  src={require("../../../icons/busbox.png")}/>
                 </Link>
             </div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <ul className='nav-menu-items'>
                     <li key={'toggle-icon'} className='navbar-toggle'>
-                        <img onClick={toggleSidebar} className='navbar-icons' alt="Ham" src={require("../../icons/back-arrow.png")}/>
+                        <img onClick={toggleSidebar} className='navbar-icons' alt="Ham" src={require("../../../icons/back-arrow.png")}/>
                     </li>
                     {sidebarData.map((item, index) => {
                         return (

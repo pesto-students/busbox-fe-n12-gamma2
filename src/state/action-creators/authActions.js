@@ -13,3 +13,10 @@ export const setSignupData = (data) => {
         payload : data
     })
 }
+
+export const setEmail = (email) => {
+    return (dispatch) => dispatch({
+        type: actionNames.SET_EMAIL,
+        payload : email
+    })
+}

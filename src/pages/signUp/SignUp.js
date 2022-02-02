@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import PrimaryButton from "../../components/buttons/primaryButton/PrimaryButton";
 import InputBox from '../../components/inputBox/InputBox';
 import Heading from '../../components/heading/Heading';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./SignUp.css"
 import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ import GoogleLogin from 'react-google-login'
 export default function SignUp(){
     const {setSignupData, setAccessToken} = bindActionCreators(authActions, useDispatch());
     const navigate = useNavigate();
+    const redirectBackTo = useLocation().state?.redirectBackTo;
+    console.log('redirectBackTo', redirectBackTo);
     const [state, setState] = useState({
         name: '',
         email: '',
@@ -37,7 +39,7 @@ export default function SignUp(){
         api.post('/auth/signup', state).then(result => {
             if(result.status === 201){
                 snackbar.success('Account Created! redirecting to SignIn page');
-                navigate('/signin')
+                navigate('/signin', {state: {redirectBackTo}})
             }
         })
     }
@@ -47,7 +49,7 @@ export default function SignUp(){
         api.post('auth/google-login', {idToken: data.tokenId}).then(result => {
             snackbar.success('account created!');
             setAccessToken(result.data.accessToken);
-            navigate('/');
+            navigate(redirectBackTo || '/');
         })
     }
     const googleLoginFailure = (err) => {
@@ -105,7 +107,8 @@ export default function SignUp(){
                 className="btn-google"
             />
             <h4>Already have an account?
-                <Link to="/signin"> Sign In</Link>
+            <span onClick={() => navigate('/signin', {state: {redirectBackTo}})}> Sign In
+                </span>
             </h4>
         </div> 
     )

@@ -3,10 +3,10 @@ import * as commonUtils from '../commonUtils'
 
 const getBookingDetails = (booking) => {
     let details = [];
-    details.push({key: 'Source City', value: commonUtils.capitalize(booking?.sourceCity)});
-    details.push({key: 'Destination City', value: commonUtils.capitalize(booking?.destinationCity)})
+    details.push({key: 'Source City', value: commonUtils.capitalize(booking?.sourceCity?.cityName)});
+    details.push({key: 'Destination City', value: commonUtils.capitalize(booking?.destinationCity?.cityName)})
     details.push({key: "Journey Date", value: booking?.journeyDate})
-    details.push({key: "Seat Number(s)", value: booking?.bookedSeats?.map(s => s.seatNumber)?.join()})
+    details.push({key: "Seat Number(s)", value: booking?.bookedSeats?.join()})
     details.push({key: "Bus Type", value: booking?.busType})
     details.push({key: "Mobile Number", value: booking?.contactDetails?.phone})
     details.push({key: "Email", value: booking?.contactDetails?.email})

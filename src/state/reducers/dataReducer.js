@@ -31,6 +31,8 @@ const reducer = (state = initialState, action) => {
             return {...state, bookings: action.payload}
         case actionNames.SET_SELECTED_BOOKING :  
             return {...state, selectedBooking: action.payload}
+        case actionNames.RESET_DATA : 
+            return initialState;
         default: 
             return state;
     }

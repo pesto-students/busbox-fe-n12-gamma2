@@ -1,21 +1,22 @@
 import React from 'react'
 
 const aminitiesMap = {
-    'a/c' : { icon : require("../../../icons/ac.png")
-            , text : "A/C"
-            },
+    'a/c' : 
+        { icon : require("../../../icons/ac.png")
+        , text : "A/C"
+        },
     'wifi':
-            { icon : require("../../../icons/wifi.png")
-            , text : "WiFi"
-            },
-    '1 rest stop':
-            { icon : require("../../../icons/charger.png")
-            , text : "Charging"
-            },
+        { icon : require("../../../icons/wifi.png")
+        , text : "WiFi"
+        },
     'charging socket':
-            { icon : require("../../../icons/rest-stop.png")
-            , text : "1 Rest Stop"
-            }
+        { icon : require("../../../icons/charger.png")
+        , text : "Charging"
+        },
+    '1 rest stop':
+        { icon : require("../../../icons/rest-stop.png")
+        , text : "1 Rest Stop"
+        }
 }
 
 

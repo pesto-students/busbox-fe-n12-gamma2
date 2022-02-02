@@ -14,5 +14,7 @@ export default {
     SET_CONTACT_DETAILS: 'setContactDetails',
     SET_REQUEST: 'setRequest',
     SET_BOOKINGS: 'setBookings',
-    SET_SELECTED_BOOKING: 'setSelectedBooking'
+    SET_SELECTED_BOOKING: 'setSelectedBooking',
+    SET_EMAIL: 'setEmail',
+    RESET_DATA: 'resetData'
 }

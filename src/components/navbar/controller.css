@@ -1,0 +1,28 @@
+.web-controller{
+    visibility: visible;
+}
+.mobile-navbar{
+    visibility: hidden;
+}
+
+@media all and (max-width:550px) {
+    .web-controller{
+        visibility: hidden;
+        position: fixed;
+        top: -100%;
+    }
+    .mobile-navbar{
+        visibility: visible;
+    }
+}
+@media all and (min-width:550px) {
+    .web-controller{
+        visibility: visible;
+    
+    }
+    .mobile-navbar{
+        visibility: hidden;
+        position: fixed;
+        top: -100%;
+    }
+}

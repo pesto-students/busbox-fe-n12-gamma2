@@ -1,9 +1,15 @@
 import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import TertiaryButton from '../../components/buttons/tertiaryButton/TertiaryButton'
 import './Error.css'
 
 
 export default function Error(){
+    
+    const navigate = useNavigate();
+    const params = useParams();
+    console.log(params);
+    const goHome = () => navigate('/');
     return (
         <div className="error">
             <div className="page-content error-content">
@@ -12,7 +18,7 @@ export default function Error(){
                 <h2>Something Went Wrong</h2>
             </div>
             <div className='back-button-container'>
-                <TertiaryButton text='Go Back'/>
+                <TertiaryButton onClick={goHome}text='Go Back'/>
             </div>
         </div>
     )

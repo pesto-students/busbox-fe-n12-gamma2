@@ -155,6 +155,8 @@ export default function Home(){
                         renderInput={(params) => <TextField {...params} />}
                         onChange={handleChange} // TODO :: change openPicker icon later.
                         inputFormat="dd/MM/yyyy"
+                        minDate={moment().toDate()}
+                        maxDate={moment().add(2,'months').toDate()}
                     />
                 </LocalizationProvider>
                 <div className="pick-a-day">

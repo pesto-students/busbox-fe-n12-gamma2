@@ -9,7 +9,7 @@ const getAllDetails = (state) => {
     details.push({key: 'Source City', value: commonUtils.capitalize(state?.sourceCity?.cityName)});
     details.push({key: 'Destination City', value: commonUtils.capitalize(state?.destinationCity?.cityName)})
     details.push({key: "Journey Date", value: state?.userInputDate})
-    details.push({key: "Seat Number(s)", value: state?.selectedSeats?.map(s => s.seatNumber)?.join()})
+    details.push({key: "Seat Number(s)", value: state?.selectedSeats.join()})
     details.push({key: "Bus Type", value: state?.selectedBus?.busType})
     details.push({key: "Mobile Number", value: state?.contactDetails?.phoneNumber})
     details.push({key: "Email", value: state?.contactDetails?.email})

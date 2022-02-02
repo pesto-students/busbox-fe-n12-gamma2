@@ -15,6 +15,8 @@ export default function PasssengerDetails(){
     const navigate = useNavigate();
     const {setPassengerDetails} = bindActionCreators(dataActions, useDispatch())
     const data = useSelector(state => state?.data);
+    const rflSeats = data.selectedBus.seatLayout.reservedForLadiesSeats;
+    console.log(data);
     const [passengers, setPassengers] = useState(data.passengerDetails || []);
 
     const [detail, setDetail] = useState({
@@ -82,8 +84,7 @@ export default function PasssengerDetails(){
         if( seats != passengers.length){
             return snackbar.error(`Selected Seats are ${seats}\nMust add EXACTLY ${seats} passenger(s)`);
         }
-
-        const numberOfRFLSeats = data.selectedSeats.filter(seat => seat.status.toLowerCase() === 'reserved for ladies').length;
+        const numberOfRFLSeats = data.selectedSeats.filter(seat => rflSeats.includes(seat)).length;
         const numberOfFemalePassengers = passengers.filter(passenger => passenger.gender.toLowerCase() === 'female').length;
 
         if (numberOfFemalePassengers < numberOfRFLSeats) {

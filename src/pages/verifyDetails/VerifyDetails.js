@@ -3,22 +3,24 @@ import './VerifyDetails.css'
 import Heading from '../../components/heading/Heading'
 import SecondaryButton from '../../components/buttons/secondaryButton/SecondaryButton'
 import Details from '../../components/details/Details'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {getAllDetails, getLocationString} from './detailUtils'
 import api from '../../axios/api'
 import { useSelector } from 'react-redux'
-
+import snackbar from '../../components/snackbar/snackbarUtils'
 
 export default function VerifyDetails(){
 
-    const data = useSelector(state => state.data);
-    console.log(data);
+    const state = useSelector(state => state)
+    const data = state.data;
+    const auth = state.auth;
+
     const verificationData = getAllDetails(data);    
-    
+    const navigate = useNavigate();
     const request =  { 
         busId: data?.selectedBus?.busId,
         busType: data?.selectedBus?.busType,
-        selectedSeats: data?.selectedSeats?.map(seat => seat.seatNumber),
+        selectedSeats: data?.selectedSeats,
         sourceCity: data?.sourceCity?.cityName,
         destinationCity: data?.destinationCity?.cityName,
         journeyDate: data?.userInputDate,
@@ -27,18 +29,19 @@ export default function VerifyDetails(){
         passengerDetails: data?.passengerDetails?.map(detail => ({...detail, age:Number.parseInt(detail.age)})),
         contactDetails: {email: data?.contactDetails?.email, phone: data?.contactDetails?.phoneNumber}
       }
-      console.warn('booking request ::: - ', request);
+
     const proceed = () => {
-
-
-        console.warn("Making Request With Data :-", request);
-
-        api.post('/bookings/new', request)
-        .then(result => {
-            window.location.replace(result.data.url)
-        }).catch(err => {
-            console.error('eerr ::', err);
-        })
+        if(!auth.email){
+            snackbar.warning('Please Sign In First.');
+            navigate('/signin', {state: {redirectBackTo: '/buses/seats/locations/passengers/contact/verify'}})
+        } else {
+            api.post('/bookings/new', request)
+            .then(result => {
+                window.location.replace(result.data.url)
+            }).catch(err => {
+                console.error('eerr ::', err);
+            })
+        }
     }
 
     return (

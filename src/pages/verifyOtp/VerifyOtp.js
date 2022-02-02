@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 export default function VerifyOtp(){
     const [otp, setOtp] = useState('');
     const selectedBooking = useSelector(state => state.data.selectedBooking)
+    const email = useSelector(state => state.auth.email);
     const bookingId = selectedBooking.bookingId
     const navigate = useNavigate();
     const handleChange = (event) => {
@@ -27,7 +28,7 @@ export default function VerifyOtp(){
             <div className="page-content">
                 <Heading text="Cancel the booking" />
                 <div className='verify-otp-card'>
-                    <p>A confirmation code has been sent to patilgajanan1807@gmail.com. Enter that code below to confirm the cancellation.</p>
+                    <p>{`A confirmation code has been sent to ${email}. Enter that code below to confirm the cancellation.`}</p>
                     
                     <InputBox
                         inputType = 'number'
