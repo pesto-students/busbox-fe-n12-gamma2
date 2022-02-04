@@ -44,15 +44,6 @@ Start the server
 - Have a custom domain name to deploy the app
 
 
-## 🚀 About Me
-I'm a full stack developer... I am always eager to learn new things, or have peer coding session, or to just chill with other dev buddies.
-Feel free to contact me on my [Linked In](). Or drop me an [email](patilgajanan1807@gmail.com)
-
-## 🛠 Skills
-Nodejs, ReactJS, Javascript, Haskell, Java, Purescript, HTML, CSS...
-
-
-
 ## Screenshots
 
 ![App Screenshot](screenshots/home_screen.png)
@@ -84,3 +75,11 @@ Please adhere to this project's `code of conduct`.
 
 No, currently it is integrated using test credentials, You can use test card (4242 4242 4242 4242) with future expiry date and any 3 digit cvv to make a successful booking.
 
+
+
+## 🚀 About Me
+I'm a full stack developer... I am always eager to learn new things, or have peer coding session, or to just chill with other dev buddies.
+Feel free to contact me on my [Linked In](). Or drop me an [email](patilgajanan1807@gmail.com)
+
+## 🛠 Skills
+Nodejs, ReactJS, Javascript, Haskell, Java, Purescript, HTML, CSS...
