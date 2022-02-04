@@ -3,7 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import getSidebarData from '../sidebarData';
 import './Navbar.css';
 import '../controller.css'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import api from '../../../axios/api';
+import { bindActionCreators } from 'redux';
+import { authActions } from '../../../state';
+import snackbar from '../../../components/snackbar/snackbarUtils'
 function Navbar () {
 
     const [sidebar, setSidebar] = useState(false);
@@ -11,6 +15,19 @@ function Navbar () {
     const auth = useSelector(state => state?.auth)
     const isSignedIn = auth.email || false;
     const navigate = useNavigate();
+    const {clearAuthData} = bindActionCreators(authActions, useDispatch())
+
+    const signOut = () => {
+        api.post('/auth/logout').then(response => {
+            if(response.status === 204){
+                clearAuthData();
+                toggleSidebar();
+                snackbar.success("Signed out.");
+                navigate('/');
+            }
+        })
+    }
+
     return (
         <div className='mobile-navbar'>
              <div className="navbar">
@@ -26,12 +43,18 @@ function Navbar () {
                     </li>
                     {getSidebarData(isSignedIn).map((item, index) => {
                         return (
-                            <li className='nav-text' key={index} onClick={() => {toggleSidebar(); navigate(item.path)}}>
+                            <li className='nav-text' key={`unique-${index}`} onClick={() => {toggleSidebar(); navigate(item.path)}}>
                                 <img className='navbar-icons'  alt="Ham" src={item.icon}/>
                                 <p >{item.title}</p>
                             </li>
                         );
                     })}
+                    {isSignedIn && 
+                        <li className='nav-text' key={'index-last'} onClick={signOut}>
+                            <img style={{opacity: 0.6}} className='navbar-icons'  alt="Ham" src={require("../../../icons/log-out.png")}/>
+                            <p> Sign Out </p>
+                        </li>
+                    }
                 </ul>
             </nav>
         </div>

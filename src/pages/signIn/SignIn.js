@@ -13,10 +13,10 @@ import api from "../../axios/api";
 import {isValidEmail} from '../commonUtils'
 import snackbar from '../../components/snackbar/snackbarUtils'
 import GoogleLogin from 'react-google-login'
+import { Stack } from "@mui/material";
 
 
 export default function SignIn(){
-
     const navigate = useNavigate();
     const redirectBackTo = useLocation().state?.redirectBackTo;
     const state = useSelector(state => state)
@@ -83,46 +83,52 @@ export default function SignIn(){
     return(
         <div className="sign-in">
             <Heading text="Sign In"/>
-            <InputBox
-                onChange={handleChange}
-                name='email'
-                value={credentials.email}
-                inputType = 'text' 
-                placeholder="E-Mail ID" 
-                icon={require("../../icons/email.png")}
-            />    
-            <InputBox
-                onChange={handleChange}
-                name='password'
-                value={credentials.password}
-                inputType = 'password' 
-                placeholder="Password" 
-                icon={require('../../icons/lock.png')}
+            <div className="email-input">
+                <InputBox
+                    onChange={handleChange}
+                    name='email'
+                    value={credentials.email}
+                    inputType = 'text' 
+                    placeholder="E-Mail ID" 
+                    icon={require("../../icons/email.png")}
+                />    
+            </div>
+            <div className="password-input">
+                <InputBox
+                    onChange={handleChange}
+                    name='password'
+                    value={credentials.password}
+                    inputType = 'password' 
+                    placeholder="Password" 
+                    icon={require('../../icons/lock.png')}
+                />
+            </div>
+
+            <div className="login-btn">
+                <PrimaryButton text="Log In" onClick={signIn}/>
+            </div>
+
+            <GoogleLogin
+                clientId="627334801362-oseeis0ec3hol4j45jd3uantinrrnp3v.apps.googleusercontent.com"
+                render={ renderProps => (
+                    <div onClick={renderProps.onClick} disabled={renderProps.disabled} className="btn-google">
+                        <img className="bottom-icons" src={require("../../icons/google.png")} />
+                        <h4 className="txt-no-account">Login With Google</h4>    
+                    </div>
+                )}
+                onSuccess={googleLoginSuccess}
+                onFailure={googleLoginFailure}
             />
 
-
-            <PrimaryButton text="Log In" onClick={signIn}/>
-            <h2>OR</h2>
-
-                <GoogleLogin
-                    clientId="627334801362-oseeis0ec3hol4j45jd3uantinrrnp3v.apps.googleusercontent.com"
-                    render={ renderProps => (
-                        <div onClick={renderProps.onClick} disabled={renderProps.disabled} className="btn-google">
-                            <img className="bottom-icons" src={require("../../icons/google.png")} />
-                            <h4 className="txt-no-account">Login With Google</h4>    
-                        </div>
-                    )}
-                    onSuccess={googleLoginSuccess}
-                    onFailure={googleLoginFailure}
-                />
             <div onClick={guestLogin} className="btn-guest">
                 <img className="bottom-icons" src={require("../../icons/guest.png")} />
                 <h4 className="txt-no-account">Guest User Login</h4>    
             </div>
-            <h4> Don't have an account?
+            
+            <h4 className="no-account"> Don't have an account?
                 <span style={{cursor: 'pointer'}} onClick={() => navigate('/signup', {state: {redirectBackTo}})}> Sign Up 
                 </span>
-            </h4>            
-    </div>
+            </h4>
+        </div>
     )
 }

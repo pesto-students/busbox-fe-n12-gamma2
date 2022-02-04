@@ -20,6 +20,7 @@
     height: 2.5rem;
     width: 2.5rem;
     margin: 1rem 0;
+    cursor: pointer;
 }
 
 .pick-a-day{

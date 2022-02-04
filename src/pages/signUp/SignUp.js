@@ -97,17 +97,16 @@ export default function SignUp(){
             <div className="sign-up-button">
                 <PrimaryButton onClick={signup} text="Sign Up"/>
             </div>
-            <h2 className="or-text">OR</h2>
-            {/* <div className="btn-google">
-                <img className="bottom-icons" src={require("../../icons/google.png")} />
-                <h4 class="txt-no-account">Signup with Google</h4>    
-            </div> */}
             <GoogleLogin
                 clientId="627334801362-oseeis0ec3hol4j45jd3uantinrrnp3v.apps.googleusercontent.com"
-                buttonText="Login With Google"
                 onSuccess={googleLoginSuccess}
                 onFailure={googleLoginFailure}
-                className="btn-google"
+                render={ renderProps => (
+                    <div onClick={renderProps.onClick} disabled={renderProps.disabled} className="btn-google-sign-up">
+                        <img className="bottom-icons" src={require("../../icons/google.png")} />
+                        <h4 className="txt-no-account">Sign Up With Google</h4>    
+                    </div>
+                )}
             />
             <h4>Already have an account?
             <span style={{cursor: 'pointer'}} onClick={() => navigate('/signin', {state: {redirectBackTo}})}> Sign In

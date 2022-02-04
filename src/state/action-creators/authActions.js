@@ -20,3 +20,10 @@ export const setEmail = (email) => {
         payload : email
     })
 }
+
+export const clearAuthData = () => {
+    return (dispatch) => dispatch({
+        type: actionNames.CLEAR_AUTH_DATA,
+        payload : null
+    })
+}

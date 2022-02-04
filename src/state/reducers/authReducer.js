@@ -19,6 +19,8 @@ const reducer = (state = initialState, action) => {
             return {...state, signupData: action.payload}
         case actionNames.SET_EMAIL :  
             return {...state, email: action.payload}
+        case actionNames.CLEAR_AUTH_DATA :  
+            return initialState
         default: 
             return state;
     }

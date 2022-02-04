@@ -1,6 +1,7 @@
 export default {
     SET_ACCESS_TOKEN : 'setAccessToken',
     SET_SIGNUP_DATA : 'setSignupData',
+    CLEAR_AUTH_DATA: 'clearAuthData',
     TOGGLE_LOADER: 'toggleLoader',
     SET_CURRENT_ROUTE: 'setRouteDetails',
     SHOW_SNACKBAR: 'showSnackbar',

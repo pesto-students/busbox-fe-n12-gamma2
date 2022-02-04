@@ -12,6 +12,17 @@
     display: flex;
     align-items: center;   
 }
+
+
+.btn-google-sign-up{
+    height: 4rem;
+    width: 13rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;   
+    cursor: pointer;
+}
+
 .bottom-icons{
     width:2rem;
     height:2rem;
@@ -19,15 +30,10 @@
 .txt-no-account{
     margin-left: 20px;
 }
-.btn-guest{
-    height: 4rem;
-    width: 13rem;
-    display: flex;
-    align-items: center;
-}
+
 
 .sign-up-button{
-    padding-top: 1.5rem;
+    padding: 2rem 0;
 }
 
 .or-text{
