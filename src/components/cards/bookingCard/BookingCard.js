@@ -5,7 +5,6 @@ import * as commonUtils from '../../../pages/commonUtils'
 import moment from 'moment'
 export default function BoookingCard (props) {
     const details = props.details;
-    console.log('details', details);
     const journeyDate = moment(details.journeyDate,'DD/MM/YYYY');
     const today = moment();
     const isCancelled = details.bookingStatus.toLowerCase() === 'cancelled'

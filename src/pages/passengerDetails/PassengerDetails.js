@@ -19,7 +19,6 @@ export default function PasssengerDetails(){
     const {setPassengerDetails} = bindActionCreators(dataActions, useDispatch())
     const data = useSelector(state => state?.data);
     const rflSeats = data.selectedBus.seatLayout.reservedForLadiesSeats;
-    console.log(data);
     const [passengers, setPassengers] = useState(data.passengerDetails || []);
 
     const [detail, setDetail] = useState({
@@ -37,7 +36,6 @@ export default function PasssengerDetails(){
     }
     
     const addPassenger = () => {
-        console.log(detail);
         window.detail = detail;
         if(!detail.name.trim()){
             return snackbar.error('Enter name of the passenger');

@@ -7,3 +7,7 @@
     font-style: normal;
     margin: 1rem 0rem;
 }
+
+.heading.desktop-heading {
+    text-align: center;
+}

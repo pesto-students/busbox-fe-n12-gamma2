@@ -25,6 +25,7 @@
     text-align: center;
     padding: 0rem 0.5rem;
     padding-bottom: 0.5rem;
+    cursor: pointer;
 }
 
 .dropdown-icon{
@@ -37,6 +38,7 @@
     margin: 0;
     border-bottom: 1px solid;
     text-align: center;
+    cursor: pointer;
 }
 
 .bookings-list {
@@ -58,10 +60,12 @@
     position: absolute;
     top: 3%;
     right: 6%;
+    cursor: pointer;
 }
 
 .desktop-refresh {
     width: 1.5rem;
+    cursor: pointer;
 }
 
 .no-bookings {

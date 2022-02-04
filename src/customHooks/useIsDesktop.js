@@ -6,7 +6,6 @@ export default function useIsDesktop () {
     const onWindowResize = () => {
         const width = Math.min(window.innerWidth, window.outerWidth);
         const isDesktop = width >= 550;
-        console.log(isDesktop);
         setIsDesktop(isDesktop)
     }
 

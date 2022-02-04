@@ -57,7 +57,7 @@ export default function BookingDetails(){
                 navigate('/bookings/details/cancel')
             }
         }).catch (err => {
-            console.log('err in cancel', err, {...err});
+            console.log('error in cancel', err, {...err});
         })
     }
     return (

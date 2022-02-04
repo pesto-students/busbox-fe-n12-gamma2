@@ -25,24 +25,3 @@ export default function BusSeat(props){
         />
     )
 }
-
-/*
-    const toggleSelection = () => {
-        console.log(props);
-        console.log(status.toLowerCase());
-        if(props.isDummy || status.toLowerCase() === 'booked') return;
-        setIsSelected(selected => {
-            if(selected) {
-                props.deselectSeat(props.seatNumber);
-                setStatus(initialStatus)
-            }
-            else { 
-                props.selectSeat(props.seatNumber);
-                setStatus('Selected')
-            }
-            return !selected
-        })
-    }
-
-
-*/

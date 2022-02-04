@@ -28,15 +28,14 @@ export default function CityLocation(props){
         const destinationCityId = data?.destinationCity?.cityId;
         api.get('/buses/locations', { params: { cityId: sourceCityId }
         }).then(response => {
-            console.log('output :: ',response)
             setPickupLocations(response?.data[0]?.locations);
             return api.get('/buses/locations', {params : {cityId: destinationCityId}})
         }).then(response => {
-            console.log('second output :: ',response)
             setDropLocations(response?.data[0]?.locations);
-        }).catch(error => console.error('output error :: ', error))
-        
-        // TODO :: handle api error and show error screen.
+        }).catch(error => {
+            console.error('output error :: ', error)
+            navigate('/error');
+        })
     }, [] );
 
     const selectPickupLocation = (index) => {

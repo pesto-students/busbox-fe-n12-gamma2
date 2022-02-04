@@ -24,7 +24,6 @@ export default function SeatLayout(){
     const {setSelectedSeats : setInReduxSelectedSeats} = bindActionCreators(dataActions, useDispatch())
 
     const toggleSeatSelection = (index) => {
-        console.log(index);
         if(selectedSeats.includes(index)) setSelectedSeats(seats => seats.filter(seat => seat !== index))
         else setSelectedSeats(seats => [...seats, index])
     }
@@ -61,7 +60,7 @@ export default function SeatLayout(){
                     bus={data.selectedBus}
                     sourceCityName={data.sourceCity.cityName}
                     destinationCityName={data.destinationCity.cityName}
-                    onClick={() => console.log('bus card clicked!')}
+                    onClick={() => 1}
                 />
                 <div className="seats">
                     {getSeatInfo(isSleeper)}

@@ -6,10 +6,8 @@ function getSeat(index, seatConfig) {
         isSleeper, selectedSeats, bookedSeats, 
         reservedForLadiesSeats, toggleSeatSelection
     } = seatConfig;
-    console.log(seatConfig);
     const isBooked = bookedSeats.includes(index);
     const isSelected = selectedSeats.includes(index);
-    console.log(isSelected, selectedSeats);
     const isReserved = reservedForLadiesSeats.includes(index); 
     return (
         <BusSeat 
@@ -71,7 +69,6 @@ function getNormalSeatRow(seatConfig){
 const getSeatLayout = (seatConfig) => {
     const numberOfRows = seatConfig.numberOfRows;
     const rows = new Array(numberOfRows).fill(0).map((item, index) => index)
-    console.log(rows);
     return (
         rows.map( (row, index, array) => {
             seatConfig['row'] = row;

@@ -9,6 +9,7 @@
     border-radius: 16px;
     padding: 0.5rem 0rem;
     margin-top: 50px;
+    cursor: pointer;
 }
 
 .desktop-button-text{

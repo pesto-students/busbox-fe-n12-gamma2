@@ -1,5 +1,5 @@
 .navbar{
-    height: 10%;
+    height: 100%;
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -13,11 +13,13 @@
 .logo-img{
     height: 4rem;
     margin-left: 1rem;
+    cursor: pointer;
 }
 
 .navbar-icons{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
 } 
 
 .nav-menu-items{
@@ -32,13 +34,16 @@
     font-family: 'Roboto', serif;
 }
 
+.nav-menu-items a:hover {
+    text-decoration: none;
+}
 .nav-text{
     display:flex;
     list-style: none;
-    font-size: 2rem;
-    padding: 8px 16px;
-    
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
     align-content: center;
+    cursor: pointer;
 }
 
 .nav-text p {
@@ -58,13 +63,18 @@
 
 .nav-menu.active{
     left: 0;
-    transition: 350ms;  
+    transition: 350ms;
+    z-index: 2;
 }
 
+a {
+    text-decoration: none;
+}
 .navbar-toggle {
     height: 8%;
     padding-left: 16px;
     padding-top: 16px;
     list-style: none;
     border-bottom: 1px solid;
+    cursor: pointer;
  }

@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux'
 
 export default function BusCard(props){
     const state = useSelector(state => state)
-    console.log(props.route);
     const thisBus = props.bus 
     const aminities = thisBus.aminities.map(aminity => aminitiesMap[aminity.toLowerCase()])
     const timingDetails = getTimingDetails(

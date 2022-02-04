@@ -10,7 +10,6 @@ import './Buses.css'
 export default function Buses(){
     const navigate = useNavigate();
     const data = useSelector(state => state.data)
-    console.log('data in buses', data)
     const {setSelectedBus, setBusRoute, setSelectedSeats} = bindActionCreators(dataActions, useDispatch())
 
     const sourceCityName = data.userInputSourceCity;

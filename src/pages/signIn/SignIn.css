@@ -12,6 +12,7 @@
     width: 13rem;
     display: flex;
     align-items: center;   
+    cursor: pointer;
 }
 .bottom-icons{
     width:2rem;

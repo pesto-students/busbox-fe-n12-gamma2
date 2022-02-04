@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
-import sidebarData from '../sidebarData';
+import getSidebarData from '../sidebarData';
 import './WebNavbar.css';
 import '../controller.css'
+import {useSelector} from 'react-redux'
 
 function WebNavbar () {
 
+    const auth = useSelector(state => state?.auth)
+    const isSignedIn = auth.email || false;
 
     return (
         <div className='web-controller'>
@@ -17,7 +20,7 @@ function WebNavbar () {
                 
                     <ul className='web-nav-menu-items'>
                        
-                        {sidebarData.map((item, index) => {
+                        {getSidebarData(isSignedIn).map((item, index) => {
                             return (
                                 <div key={index} >
                                     <Link to={item.path} >
@@ -28,9 +31,9 @@ function WebNavbar () {
                                 </div>
                             );
                         })}
-                        <Link to='/'>
+                        {/* <Link to='/'>
                             <img alt="logo" className="web-logo-img"  src={require("../../../icons/guest.png")}/>
-                        </Link>
+                        </Link> */}
                     </ul>
                 </nav>
                

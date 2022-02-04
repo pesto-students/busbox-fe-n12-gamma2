@@ -20,11 +20,20 @@ const aminitiesMap = {
 }
 
 
+const getTimeFromMins = (sourceTime, destinationTime) => {
+    const totalInMins = destinationTime - sourceTime;
+    let hours = Math.floor(totalInMins / 60);
+    let mins = Math.floor(totalInMins % 60);
+    hours = `${hours}`.length < 2 ? `0${hours}` : hours  
+    mins = `${mins}`.length < 2 ? `0${hours}` : mins
+    return  `${hours}:${mins} Hrs`
+}
+
 const getTimingDetails = (thisBus, {sourceCityName, destinationCityName}) => {
     const sourceCity = thisBus.busRoute.filter(city => city.cityName === sourceCityName)[0];
     const destinationCity = thisBus.busRoute.filter(city => city.cityName === destinationCityName)[0];
     const departureTime = sourceCity.departureTime;
-    const journeyTime = destinationCity.journeyTime;
+    const journeyTime = getTimeFromMins(sourceCity.journeyTimeInMins, destinationCity.journeyTimeInMins)
     const timingDetails = [
         {
             text : "Departure Time",

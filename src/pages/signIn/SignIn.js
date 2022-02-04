@@ -46,8 +46,8 @@ export default function SignIn(){
             navigate(redirectBackTo || '/');
         })
         .catch(error=> {
-            // TODO :: handle API errors, show error pages
             console.log('error',error)
+            navigate('/error')
         })
     }
 
@@ -60,18 +60,20 @@ export default function SignIn(){
             navigate(redirectBackTo || '/');
         })
         .catch(error=> {
-            // TODO :: handle API errors, show error pages
             console.log('error',error)
+            navigate('/error');
         })
     }
 
     const googleLoginSuccess = (data) => {
-        console.log(data);
         api.post('auth/google-login', {idToken: data.tokenId}).then(result => {
             setEmail(data.profileObj.email)
             setAccessToken(result.data.accessToken);
             navigate(redirectBackTo || '/');
-        })
+        }).catch(err => {
+            console.log('Google Login Error', err);
+            navigate('/error');
+        }) 
     }
     const googleLoginFailure = (err) => {
         console.log(err);
@@ -118,7 +120,7 @@ export default function SignIn(){
                 <h4 className="txt-no-account">Guest User Login</h4>    
             </div>
             <h4> Don't have an account?
-                <span onClick={() => navigate('/signup', {state: {redirectBackTo}})}> Sign Up 
+                <span style={{cursor: 'pointer'}} onClick={() => navigate('/signup', {state: {redirectBackTo}})}> Sign Up 
                 </span>
             </h4>            
     </div>

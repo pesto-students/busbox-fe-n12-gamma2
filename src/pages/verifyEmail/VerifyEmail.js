@@ -23,12 +23,14 @@ export default function VerifyEmail(){
 
     const confirm = () => {
         api.post('/auth/signup', {...data, otp}).then(result => {
-            console.log(result.status);
             if(result.status === 201){
                 snackbar.success('Account Created! redirecting to SignIn page');
                 navigate('/signin', {state: {redirectBackTo}})
             }
-        })
+        }).catch(error => {
+            console.log('SignUp Error', error);
+            navigate('/error');
+        });
     }
 
     return(

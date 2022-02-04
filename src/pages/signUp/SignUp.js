@@ -16,7 +16,6 @@ export default function SignUp(){
     const {setSignupData, setAccessToken} = bindActionCreators(authActions, useDispatch());
     const navigate = useNavigate();
     const redirectBackTo = useLocation().state?.redirectBackTo;
-    console.log('redirectBackTo', redirectBackTo);
     const [state, setState] = useState({
         name: '',
         email: '',
@@ -46,15 +45,18 @@ export default function SignUp(){
     }
 
     const googleLoginSuccess = (data) => {
-        console.log(data);
         api.post('auth/google-login', {idToken: data.tokenId}).then(result => {
             snackbar.success('account created!');
             setAccessToken(result.data.accessToken);
             navigate(redirectBackTo || '/');
+        }).catch(error => {
+            console.log('google sign up error', error)
+            navigate('/error');
         })
     }
     const googleLoginFailure = (err) => {
         console.log(err);
+        navigate('/error');
     }
 
     return(
@@ -108,7 +110,7 @@ export default function SignUp(){
                 className="btn-google"
             />
             <h4>Already have an account?
-            <span onClick={() => navigate('/signin', {state: {redirectBackTo}})}> Sign In
+            <span style={{cursor: 'pointer'}} onClick={() => navigate('/signin', {state: {redirectBackTo}})}> Sign In
                 </span>
             </h4>
         </div> 

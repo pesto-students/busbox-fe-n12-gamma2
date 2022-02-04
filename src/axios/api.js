@@ -2,7 +2,8 @@ import axios from 'axios'
 import { store } from '../state/store'
 import actionNames from '../state/actionNames'
 
-const BASE_URL = 'http://patilgajanan.com:3000'
+// const BASE_URL = 'http://patilgajanan.com:3000'
+const BASE_URL = 'http://localhost:3000'
 
 const api = axios.create({
     baseURL:BASE_URL,
@@ -34,7 +35,6 @@ api.interceptors.response.use((res) => {
         type: actionNames.TOGGLE_LOADER,
         payload: false
     });
-    console.log('from interceptor', error.response, error.config, error.request);
     if((error?.response?.data?.message==='unauthorized' && error?.response?.status === 401) || error?.response?.status===403){
         return api.post('/auth/refresh')
         .then(response => {

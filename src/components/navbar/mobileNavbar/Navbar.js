@@ -1,15 +1,16 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom';
-import sidebarData from '../sidebarData';
+import { Link, useNavigate } from 'react-router-dom';
+import getSidebarData from '../sidebarData';
 import './Navbar.css';
 import '../controller.css'
-
+import {useSelector} from 'react-redux'
 function Navbar () {
 
     const [sidebar, setSidebar] = useState(false);
     const toggleSidebar = () => setSidebar(shown => !shown);
-
-
+    const auth = useSelector(state => state?.auth)
+    const isSignedIn = auth.email || false;
+    const navigate = useNavigate();
     return (
         <div className='mobile-navbar'>
              <div className="navbar">
@@ -23,16 +24,12 @@ function Navbar () {
                     <li key={'toggle-icon'} className='navbar-toggle'>
                         <img onClick={toggleSidebar} className='navbar-icons' alt="Ham" src={require("../../../icons/back-arrow.png")}/>
                     </li>
-                    {sidebarData.map((item, index) => {
+                    {getSidebarData(isSignedIn).map((item, index) => {
                         return (
-                            <div key={index} onClick={toggleSidebar}>
-                                <Link to={item.path} >
-                                    <li className='nav-text' >         
-                                        <img className='navbar-icons'  alt="Ham" src={item.icon}/>
-                                        <p >{item.title}</p>
-                                    </li>
-                                </Link>
-                            </div>
+                            <li className='nav-text' key={index} onClick={() => {toggleSidebar(); navigate(item.path)}}>
+                                <img className='navbar-icons'  alt="Ham" src={item.icon}/>
+                                <p >{item.title}</p>
+                            </li>
                         );
                     })}
                 </ul>

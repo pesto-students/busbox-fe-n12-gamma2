@@ -17,11 +17,8 @@ export default function HandleSuccess(props){
         api.get(`/bookings/${bookingId}`).then(result => {
             if(!result?.data?.customerBookings) return;
             resetData();
-            console.log(result.data.customerBookings);
             setBookings(result.data.customerBookings);
-            console.log(bookingId);
             const currentBooking = result.data.customerBookings.filter(b => b.bookingId === bookingId);
-            console.log('currentBooking', currentBooking);
             setSelectedBooking(currentBooking[0]);
             setReady(true);
         }).catch(e => {

@@ -10,7 +10,6 @@ export default function Error(){
     const navigate = useNavigate();
     const isDesktop = useIsDesktop();
     const params = useParams();
-    console.log(params);
     const goHome = () => navigate('/');
     return (
         <div className="error">

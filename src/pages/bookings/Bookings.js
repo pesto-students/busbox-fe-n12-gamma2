@@ -13,6 +13,7 @@ import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function Bookings (){
     const options = ['All Bookings', 'UpComing', 'Completed', 'Cancelled']
+    const [selectedOption, setSelectedOption] = useState(options[0]);
     const isDesktop = useIsDesktop();
     const data = useSelector(state => state.data);
     const [allBookings, setBookings] = useState(data.bookings || [])
@@ -24,10 +25,12 @@ export default function Bookings (){
         api.get('/bookings/list').then(result => {
             setBookings(result.data)
             setInReduxBookings(result.data)
+            onFilter({value: selectedOption})
         }).catch(error => {
             console.error('error gaj', {...error})
             navigate('/error');
         })
+
     }, [refresh])
 
     const onRefresh = () => setRefresh(prev => !prev)
@@ -38,10 +41,9 @@ export default function Bookings (){
         navigate('/bookings/details')
     }
 
-    // console.log('bookingstoshow', bookingsToShow);
     const onFilter = (event) => {
-        console.log(event);
         const today = moment();
+        setSelectedOption(event.value)
         switch (event.value.toLowerCase()) {
             case 'cancelled':
                 const cancelledBookings = allBookings.filter(booking => booking?.bookingStatus?.trim()?.toLowerCase() === 'cancelled');
@@ -49,12 +51,11 @@ export default function Bookings (){
                 break;
             case 'upcoming':
                 const upcomingBookings = allBookings.filter(booking => moment(booking.journeyDate, 'DD/MM/YYYY') > today);
-                console.log('upcomingBookings', upcomingBookings);
                 setBookingsToShow(upcomingBookings)
                 break;
             case 'completed':
-                const completedBookings = allBookings.filter(booking => moment(booking.journeyDate, 'DD/MM/YYYY') <= today);
-                console.log('completedBookings', completedBookings);
+                let completedBookings = allBookings.filter(booking => moment(booking.journeyDate, 'DD/MM/YYYY') <= today);
+                completedBookings = completedBookings.filter(booking => booking?.bookingStatus?.trim()?.toLowerCase() !== 'cancelled')
                 setBookingsToShow(completedBookings)
                 break;
             default:
@@ -84,7 +85,7 @@ export default function Bookings (){
             <DropDown
                 onChange={onFilter} 
                 options={options}
-                value={options[0]}
+                value={selectedOption}
                 arrowClosed={<img className='dropdown-icon' src={require('../../icons/chevron-down.png')}/>}
                 arrowOpen={<img className='dropdown-icon' src={require('../../icons/chevron-up.png')}/>}
                 controlClassName='dropdown-control'
