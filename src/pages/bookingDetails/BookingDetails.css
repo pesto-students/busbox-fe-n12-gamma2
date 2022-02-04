@@ -18,3 +18,14 @@
 .cancel {
     color: #FA216F;
 }
+.booking-details-proceed-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+}
+.desktop-button-container{
+    display: flex;
+    
+    width: 100%;
+    height: fit-content;
+}

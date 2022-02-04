@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InputBox from "../../components/inputBox/InputBox";
 import SecondaryButton from "../../components/buttons/secondaryButton/SecondaryButton";
+import DesktopButton from "../../components/buttons/desktopButton/DesktopButton";
 import Heading from "../../components/heading/Heading";
 import "./PassengerDetails.css"
 import Passenger from '../../components/passenger/Passenger';
@@ -10,9 +11,11 @@ import { bindActionCreators } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import {dataActions} from '../../state/index'
 import snackbar from '../../components/snackbar/snackbarUtils'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function PasssengerDetails(){
     const navigate = useNavigate();
+    const isDesktop = useIsDesktop();
     const {setPassengerDetails} = bindActionCreators(dataActions, useDispatch())
     const data = useSelector(state => state?.data);
     const rflSeats = data.selectedBus.seatLayout.reservedForLadiesSeats;
@@ -143,7 +146,12 @@ export default function PasssengerDetails(){
                 {passengerComponents}
             </div>
             
-            <SecondaryButton onClick={proceed} text="Confirm & Proceed"/>
+            {isDesktop && 
+                    <div className='passengers-proceed-button-container'> 
+                        <DesktopButton text="Confirm & Proceed" onClick = {proceed}/> 
+                    </div>
+                }
+            {!isDesktop && <SecondaryButton text="Confirm & Proceed" onClick = {proceed}/>}
         </div>     
     )
 }

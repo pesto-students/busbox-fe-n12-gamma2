@@ -10,14 +10,19 @@ export default function HandleSuccess(props){
     const [ready, setReady] = useState(false);
 
     const params = useParams();
+    const bookingId = params?.bookingId;
     const {setBookings, setSelectedBooking, resetData} = bindActionCreators(dataActions, useDispatch());
     const navigate = useNavigate();
     useEffect( () => {
-        api.get(`/bookings/${params.bookingId}`).then(result => {
-            if(! result?.data?.customerBookings) return;
+        api.get(`/bookings/${bookingId}`).then(result => {
+            if(!result?.data?.customerBookings) return;
             resetData();
+            console.log(result.data.customerBookings);
             setBookings(result.data.customerBookings);
-            setSelectedBooking(result.data.customerBookings.filter(b => b.bookingId === params.bookingId)[0]);
+            console.log(bookingId);
+            const currentBooking = result.data.customerBookings.filter(b => b.bookingId === bookingId);
+            console.log('currentBooking', currentBooking);
+            setSelectedBooking(currentBooking[0]);
             setReady(true);
         }).catch(e => {
             console.error('ERROR: ', e.message);

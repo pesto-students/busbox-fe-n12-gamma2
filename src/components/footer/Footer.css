@@ -4,8 +4,9 @@
     height: 15%;
     color: white;
     background-color: #5669FF;
-    margin-top: 1rem;
     justify-content: space-between;
+    margin-top: 2rem;
+    justify-self: end;
 }
 .social-icons img{
     height: 1rem;
@@ -25,9 +26,4 @@
     margin: 0.2em 1em;
     font-weight: 200;
     text-decoration: none;
-}
-@media all and (max-width:550px) {
-    .footer-container{
-        visibility: hidden;
-    }
 }

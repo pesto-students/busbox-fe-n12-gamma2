@@ -1,3 +1,7 @@
+.page-content.bookings {
+    padding-top: 0.9rem;
+}
+
 .dropdown {
     border: 1px solid;
     width: 120px;
@@ -11,6 +15,7 @@
     top: 9.5%;
     margin: 0.9rem 2rem;
     background-color: white;
+    z-index: 0;
 }
 
 .dropdown-control{
@@ -48,12 +53,22 @@
     align-items: center;
 }
 
-.refresh {
+.mobile-refresh {
+    width: 1.5rem;
+    position: absolute;
+    top: 3%;
+    right: 6%;
+}
+
+.desktop-refresh {
     width: 1.5rem;
 }
 
 .no-bookings {
-    position: fixed;
-    top: 50%;
-    
+    margin: 8rem auto;
+    text-align: center;
+}
+
+.no-bookings h2{
+    color: #5669FF;
 }

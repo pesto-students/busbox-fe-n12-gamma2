@@ -19,12 +19,13 @@ import {useDispatch, useSelector} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { dataActions } from "../../state/index"
 import snackbar from '../../components/snackbar/snackbarUtils'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function Home(){
     const navigate = useNavigate();
     const {setUserInputCurrentRoute, setFoundBuses} = bindActionCreators(dataActions, useDispatch());
     const data = useSelector(state => state?.data)
-
+    const isDesktop = useIsDesktop()
     const [searchInput, setSearchInput] = useState({
         sourceCity : '',
         destinationCity: '',
@@ -125,8 +126,8 @@ export default function Home(){
         })
     }
     return(
-        <div className="home-page">
-            <Heading text="Choose Source & Destination"/>
+        <div className={`home-page`}>
+            <Heading text="Select Source & Destination"/>
             <div className='city-input'>
                 <InputBox
                     onChange={handleChange}

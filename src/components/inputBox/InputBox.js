@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import HidePassword from "../../icons/hide-password.png"
 import "./InputBox.css"
 
 export default function InputBox(props){
@@ -13,7 +14,8 @@ export default function InputBox(props){
             <img className="input-box-icon" src={props.icon}/>
             <input
                 value={props.value} 
-                name={props.name} 
+                name={props.name}
+                autoComplete="off" 
                 onChange={props.onChange} 
                 type={showPassword ? 'text' : props.inputType} 
                 className="input-box-text" 

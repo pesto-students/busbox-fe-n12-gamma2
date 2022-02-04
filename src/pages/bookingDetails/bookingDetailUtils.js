@@ -12,7 +12,7 @@ const getBookingDetails = (booking) => {
     details.push({key: "Email", value: booking?.contactDetails?.email})
     details.push({key: "Pickup Location", value: booking?.pickupLocation})
     details.push({key: "Drop Location", value: booking?.dropLocation})
-    booking.passengerDetails.map((passenger, index) => {
+    booking?.passengerDetails.map((passenger, index) => {
         details.push({key: `Passenger ${index+1}`, value: commonUtils.getPassengerString(passenger)})
     })
     return details;

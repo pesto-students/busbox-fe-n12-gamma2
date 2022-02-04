@@ -11,9 +11,11 @@ import api from '../../axios/api'
 import {saveAs} from 'file-saver'
 import moment from 'moment'
 import snackbar from '../../components/snackbar/snackbarUtils'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function BookingDetails(){
     const navigate = useNavigate();
+    const isDesktop = useIsDesktop();
 
     const booking = useSelector(state => state?.data?.selectedBooking);
     if(!booking){
@@ -64,15 +66,32 @@ export default function BookingDetails(){
                 <Heading text='Booking Details'/>
                 <Details data={details}/>
                 { cancellable && <h3 onClick={cancel} className='cancel'>Cancel this Booking?</h3>}
+                {isDesktop && 
+                    <div className='desktop-button-container'>
+                        <div className='booking-details-proceed-button-container'>
+                            <div> 
+                                <TertiaryButton onClick={download} text='Download'/>
+                            </div>
+                        </div>
+                        <div className='booking-details-proceed-button-container'>
+                            <div> 
+                                <TertiaryButton onClick={mailme} text='E-Mail Me'/>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
-            <div className='button-container'>
-                <div>
-                    <TertiaryButton onClick={download} text='Download'/>
+
+            {!isDesktop && 
+                <div className='button-container'>
+                    <div>
+                        <TertiaryButton onClick={download} text='Download'/>
+                    </div>
+                    <div>
+                        <TertiaryButton onClick={mailme} text='E-Mail Me'/>
+                    </div>
                 </div>
-                <div>
-                    <TertiaryButton onClick={mailme} text='E-Mail Me'/>
-                </div>
-            </div>
+            }
         </div>
     )
 }

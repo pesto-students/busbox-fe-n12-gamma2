@@ -81,3 +81,9 @@
 .normal-seats-container {
     padding-top: 1rem;
 }
+
+.book-seats-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+}

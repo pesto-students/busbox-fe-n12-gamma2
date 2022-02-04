@@ -38,3 +38,9 @@
 .add-pasenger-button h3,h2 {
     margin: 0;
 }
+
+.passengers-proceed-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+}

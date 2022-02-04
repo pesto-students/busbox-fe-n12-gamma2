@@ -21,3 +21,9 @@
     bottom: 0;
     width: 100%;
 }
+.error-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+    margin: auto;
+}

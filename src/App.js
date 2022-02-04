@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Bookings from './pages/Bookings/Bookings'
 import Navbar from './components/Navbar/mobileNavbar/Navbar'
@@ -15,6 +15,7 @@ import VerifyDetails from './pages/verifyDetails/VerifyDetails'
 import BookingDetails from './pages/bookingDetails/BookingDetails'
 import CityLocation from './pages/cityLocation/CityLocation'
 import CancelConfirmation from './pages/cancelConfirmation/CancelConfirmation'
+import VerifyEmail from './pages/verifyEmail/VerifyEmail'
 import './App.css'
 import NotFound from './pages/notFound/NotFound'
 import { useSelector } from 'react-redux'
@@ -27,11 +28,13 @@ import Grid from '@mui/material/Grid'
 import useIsDesktop from './customHooks/useIsDesktop'
 
 function App() {
+    const currentPath = useLocation().pathname;
+    const isHome = currentPath === '/bookings' || currentPath === '/'
     const state = useSelector(state => state)
     const isDesktop = useIsDesktop();
     const wrapInDiv = (content) => {
         return (
-            <div className='card'>
+            <div className={`card${isHome ? ' desktop-adjustments' : ''}`}>
                 {content}
             </div>
         )
@@ -53,37 +56,38 @@ function App() {
             </div>
             <WebNavbar />
             <Navbar/>
-                    <Breadcrumbs />
-                    {getContent (
-                        <div className='pages-container'>
-                            <Routes>
-                                <Route exact path="/" element={<Home />} />
+            {isHome || <Breadcrumbs />}
+            {getContent (
+                <div className={`pages-container`}>
+                    <Routes>
+                        <Route exact path="/" element={<Home />} />
 
-                                <Route exact path="/signup" element={<SignUp />} />
-                                <Route exact path="/signin" element={<SignIn />} />
+                        <Route exact path="/signup" element={<SignUp />} />
+                        <Route exact path="/signup/verify-email" element={<VerifyEmail />} />
+                        <Route exact path="/signin" element={<SignIn />} />
 
-                                <Route exact path="/buses" element={<Buses />} />
-                                <Route exact path="/buses/seats" element={<SeatLayout />} />
-                                <Route exact path="/buses/seats/locations" element={<CityLocation />} />
-                                <Route exact path="/buses/seats/locations/passengers" element={<PassengerDetails />} />
-                                <Route exact path="/buses/seats/locations/passengers/contact" element={<ContactDetails />} />
-                                <Route exact path="/buses/seats/locations/passengers/contact/verify" element={<VerifyDetails />} />
-                                <Route exact path='booking-failed' element={<Navigate to='/buses/seats/locations/passengers/contact/verify' />} />
+                        <Route exact path="/buses" element={<Buses />} />
+                        <Route exact path="/buses/seats" element={<SeatLayout />} />
+                        <Route exact path="/buses/seats/locations" element={<CityLocation />} />
+                        <Route exact path="/buses/seats/locations/passengers" element={<PassengerDetails />} />
+                        <Route exact path="/buses/seats/locations/passengers/contact" element={<ContactDetails />} />
+                        <Route exact path="/buses/seats/locations/passengers/contact/verify" element={<VerifyDetails />} />
+                        <Route exact path='booking-failed' element={<Navigate to='/buses/seats/locations/passengers/contact/verify' />} />
 
-                                <Route exact path="/bookings" element={<Bookings />} />
-                                <Route exact path="/bookings/details" element={<BookingDetails />} />
-                                <Route exact path="/bookings/details/:bookingId" element={<HandleSuccess />} />
-                                <Route exact path="/bookings/details/cancel" element={<VerifyOtp />} />
-                                <Route exact path="/cancel-confirmation" element={<CancelConfirmation />} />
+                        <Route exact path="/bookings" element={<Bookings />} />
+                        <Route exact path="/bookings/details" element={<BookingDetails />} />
+                        <Route exact path="/bookings/details/:bookingId" element={<HandleSuccess />} />
+                        <Route exact path="/bookings/details/cancel" element={<VerifyOtp />} />
+                        <Route exact path="/cancel-confirmation" element={<CancelConfirmation />} />
 
-                                <Route exact path="/error" element={<Error />} />
-                                <Route exact path="/error/:bookingId/:message" element={<Error />} />
-                                <Route exact path="/not-found" element={<NotFound />} />
-                            </Routes>
-                        </div>
-                    )}
-                    <Snackbar />
-            <Footer />
+                        <Route exact path="/error" element={<Error />} />
+                        <Route exact path="/error/:bookingId/:message" element={<Error />} />
+                        <Route exact path="/not-found" element={<NotFound />} />
+                    </Routes>
+                </div>
+            )}
+            <Snackbar />
+            <div></div>
         </div>
     )
 }

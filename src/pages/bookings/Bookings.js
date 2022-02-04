@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom'
 import {dataActions} from '../../state/index'
 import { bindActionCreators } from 'redux'
 import moment from 'moment'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function Bookings (){
     const options = ['All Bookings', 'UpComing', 'Completed', 'Cancelled']
+    const isDesktop = useIsDesktop();
     const data = useSelector(state => state.data);
     const [allBookings, setBookings] = useState(data.bookings || [])
     const [bookingsToShow, setBookingsToShow] = useState(allBookings)
@@ -36,7 +38,7 @@ export default function Bookings (){
         navigate('/bookings/details')
     }
 
-    console.log('bookingstoshow', bookingsToShow);
+    // console.log('bookingstoshow', bookingsToShow);
     const onFilter = (event) => {
         console.log(event);
         const today = moment();
@@ -72,11 +74,13 @@ export default function Bookings (){
     ))
 
     return (
-        <div className='page-content'>
-            <div className='heading-line'> 
-                <Heading text='Your Bookings'/>
-                <img onClick={onRefresh} className='refresh' src={require('../../icons/refresh.png')}/>
-            </div>
+        <div className='page-content bookings'>    
+                { bookingCards.length <= 0 ||
+                        <div className='heading-line'>
+                            <Heading text='Your Bookings'/>
+                            <img onClick={onRefresh} className={`${isDesktop ? 'desktop-refresh' : 'mobile-refresh' }`} src={require('../../icons/refresh.png')}/>
+                        </div>
+                }
             <DropDown
                 onChange={onFilter} 
                 options={options}
@@ -87,7 +91,13 @@ export default function Bookings (){
                 className='dropdown'
             />
             <div className='bookings-list'>
-                {bookingCards.length <= 0 ? <h1 className='no-bookings'>No bookings to show</h1> : bookingCards}
+                {bookingCards.length <= 0 ? 
+                    <div className='no-bookings'>
+                        <h1 >No bookings to show</h1>
+                        <h2 onClick={onRefresh}>Click here to refresh.</h2>
+                    </div> 
+                    : bookingCards
+                }
             </div>
         </div>
     )

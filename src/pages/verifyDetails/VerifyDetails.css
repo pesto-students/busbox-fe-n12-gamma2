@@ -1,6 +1,8 @@
 .verify-details {
     height: fit-content;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     padding-bottom: 75px;
 }
 
@@ -32,4 +34,9 @@
 
 p.left{
     text-align: left;
+}
+.verify-details-proceed-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
 }

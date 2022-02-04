@@ -16,5 +16,5 @@ export default {
     SET_BOOKINGS: 'setBookings',
     SET_SELECTED_BOOKING: 'setSelectedBooking',
     SET_EMAIL: 'setEmail',
-    RESET_DATA: 'resetData'
+    RESET_DATA: 'resetData',
 }

@@ -5,14 +5,8 @@ html, body, #root, .main-container {
     font-family: 'Roboto', serif;
 }
 
-/* 
-.main-container{
-    padding-top: 20%;
-} */
-
-
 .pages-container{
-    height: 85%;
+    height: 80%;
     width: 100%;
     max-height: fit-content;
     min-height: fit-content;
@@ -20,6 +14,7 @@ html, body, #root, .main-container {
 
 .page-content {
     display: flex;
+    margin: auto;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
@@ -27,7 +22,6 @@ html, body, #root, .main-container {
     max-width: 390px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    margin: auto;
 }
 
 .input-icon {
@@ -39,16 +33,20 @@ html, body, #root, .main-container {
     background-color: rgba(136, 136, 136, 0.322);
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    z-index: 1;
 }
 
 .loader {
-    height: fit-content;
-    width: 300px;
+    width: fit-content;
+    background-color: white;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.8);
+    border-radius: 1rem;
+    padding: 1rem;
 }
 .loader-container.hidden {
     visibility: hidden;
@@ -59,16 +57,12 @@ html, body, #root, .main-container {
 }
 
 .loader-container img{
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-top: 40%;
-    width: 75%;
-    border-radius: 1.5rem;
-    margin-bottom: 0.5rem;
+    width: 200px;
 }
 
 .loader-container h4{
     margin: 0.5rem;
+    text-align: center;
 }
 
 a {
@@ -92,7 +86,6 @@ a:hover {
     flex-direction: column;
     align-items: left;
     justify-content: space-around;
-    
 }
 
 .card{
@@ -101,5 +94,9 @@ a:hover {
     max-width: 550px;
     margin: auto;
     align-content: center;
-    
+    padding: 2rem 1rem 3rem 1rem;
+}
+
+.desktop-adjustments{
+    margin-top: 6rem;
 }

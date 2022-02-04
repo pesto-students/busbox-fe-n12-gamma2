@@ -12,6 +12,11 @@ const sidebarData = [
         icon: require('../../icons/about.png')
     },
     {
+         title: 'Bookings',
+         path: '/bookings',
+         icon: require('../../icons/booking.png')
+    },
+    {
         title: 'Sign In',
         path: '/signin',
         icon: require('../../icons/about.png')
@@ -22,11 +27,5 @@ const sidebarData = [
         icon: require('../../icons/about.png')
     }
 ]
-
-// {
-//     title: 'Bookings',
-//     path: '/bookings',
-//     icon: require('../../icons/booking.png')
-// },
 
 export default sidebarData;

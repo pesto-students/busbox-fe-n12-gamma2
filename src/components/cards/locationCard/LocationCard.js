@@ -16,8 +16,8 @@ export default function LocationCard(props){
 
             <div className="location-card-time">
                 <img className="clock-icon" src={require("../../../icons/clock.png")} />
-                <p>DEPARTURE TIME  </p>
-                <span>08:30 PM  </span>
+                <p>{props.timeDetail.text}  </p>
+                <span>{props.timeDetail.value}  </span>
             </div>
 
         </div>

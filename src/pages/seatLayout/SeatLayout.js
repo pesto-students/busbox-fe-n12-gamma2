@@ -1,10 +1,9 @@
 import React, { useState } from "react"
 import Heading from '../../components/heading/Heading';
 import BusCard from "../../components/cards/busCard/BusCard";
-import PrimaryButton from "../../components/buttons/primaryButton/PrimaryButton";
 import SecondaryButton from "../../components/buttons/secondaryButton/SecondaryButton";
+import DesktopButton from "../../components/buttons/desktopButton/DesktopButton";
 import "./SeatLayout.css"
-import BusSeat from "../../components/seat/BusSeat";
 import { useNavigate } from "react-router-dom";
 import {getSeatLayout, getSeatInfo} from './seatLayoutUtils'
 import { useDispatch, useSelector } from "react-redux";
@@ -12,11 +11,12 @@ import { bindActionCreators } from "redux";
 import {dataActions, snackbarActions} from '../../state/index'
 import snackbar from '../../components/snackbar/snackbarUtils'
 import api from '../../axios/api'
+import useIsDesktop from "../../customHooks/useIsDesktop";
 
 export default function SeatLayout(){
     const data = useSelector(state => state?.data);
+    const isDesktop = useIsDesktop();
     const selectedBus = data.selectedBus;
-    console.log('selectedBus', selectedBus)
     const isSleeper = selectedBus.isSleeper;
     const navigate = useNavigate();
     const [selectedSeats, setSelectedSeats] = useState(data.selectedSeats||[]);
@@ -54,7 +54,7 @@ export default function SeatLayout(){
     }
 
     return(
-        <div className="seat-layout">
+        <div className={`seat-layout ${isDesktop ? '' : 'mobile-adjustments'}`}>
             <div className="page-content">
                 <Heading text="Select Seats"/>
                 <BusCard 
@@ -76,7 +76,14 @@ export default function SeatLayout(){
                     </div>
                 </div>
             </div>
-            <SecondaryButton onClick={bookSelectedSeats} text="Book Selected Seats"/>
-        </div>
+            {isDesktop && 
+                    <div className='book-seats-button-container'> 
+                        <DesktopButton text="Confirm & Proceed" onClick = {bookSelectedSeats}/> 
+                    </div>
+                }
+            {!isDesktop && <SecondaryButton text="Confirm & Proceed" onClick = {bookSelectedSeats}/>}
+
+        </div>            
+
     )
 }

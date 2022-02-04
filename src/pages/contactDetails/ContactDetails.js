@@ -10,9 +10,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { dataActions, snackbarActions } from '../../state/index'
 import { isValidEmail } from '../commonUtils'
 import snackbar from '../../components/snackbar/snackbarUtils'
+import DesktopButton from '../../components/buttons/desktopButton/DesktopButton'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function ContactDetails(){
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const isDesktop = useIsDesktop();
     const {setContactDetails: setInReduxContactDetails} = bindActionCreators(dataActions, useDispatch())
     const data = useSelector(state => state.data)
     const [contactDetails, setContactDetails] = useState(data.contactDetails || {
@@ -65,7 +68,15 @@ export default function ContactDetails(){
                     <p>Note : Booking Details will be sent to above email & phone</p>
                 </div>
             </div>
-            <SecondaryButton onClick={proceed} text="Confirm & Proceed"/>
+            
+            {isDesktop && 
+
+                <div className='contact-proceed-button-container'> 
+                    <DesktopButton text="Confirm & Proceed" onClick = {proceed}/> 
+                </div>
+            }
+            {!isDesktop && <SecondaryButton text="Confirm & Proceed" onClick = {proceed}/>}
+
         </div>
     )
 }

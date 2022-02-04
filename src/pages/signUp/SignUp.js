@@ -35,13 +35,14 @@ export default function SignUp(){
     const signup = () => {
         const error = validateSignupData(state);
         if(error) return snackbar.error(error);
-
-        api.post('/auth/signup', state).then(result => {
-            if(result.status === 201){
-                snackbar.success('Account Created! redirecting to SignIn page');
-                navigate('/signin', {state: {redirectBackTo}})
+        setSignupData(state);
+        api.post('/auth/verify-email', {email: state.email}).then(response => {
+            if(response?.status === 204){
+                navigate('/signup/verify-email', {state: {redirectBackTo}})
+            } else if (response.status === 409) {
+                snackbar.error('User with this email already exists');
             }
-        })
+        });
     }
 
     const googleLoginSuccess = (data) => {

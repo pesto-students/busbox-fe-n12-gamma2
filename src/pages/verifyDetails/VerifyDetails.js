@@ -8,13 +8,18 @@ import {getAllDetails, getLocationString} from './detailUtils'
 import api from '../../axios/api'
 import { useSelector } from 'react-redux'
 import snackbar from '../../components/snackbar/snackbarUtils'
+import DesktopButton from '../../components/buttons/desktopButton/DesktopButton'
+import useIsDesktop from '../../customHooks/useIsDesktop'
+
+
 
 export default function VerifyDetails(){
-
+    
+    const isDesktop = useIsDesktop();
     const state = useSelector(state => state)
     const data = state.data;
     const auth = state.auth;
-
+    
     const verificationData = getAllDetails(data);    
     const navigate = useNavigate();
     const request =  { 
@@ -28,8 +33,8 @@ export default function VerifyDetails(){
         dropLocation: getLocationString(data?.selectedDrop),
         passengerDetails: data?.passengerDetails?.map(detail => ({...detail, age:Number.parseInt(detail.age)})),
         contactDetails: {email: data?.contactDetails?.email, phone: data?.contactDetails?.phoneNumber}
-      }
-
+    }
+    
     const proceed = () => {
         if(!auth.email){
             snackbar.warning('Please Sign In First.');
@@ -43,14 +48,19 @@ export default function VerifyDetails(){
             })
         }
     }
-
+    
     return (
         <div className='verify-details'>
             <div className='page-content'>
                 <Heading text='Verify All Details'/>
                 <Details data={verificationData} />
             </div>
-            <SecondaryButton onClick={proceed} text='Continue To Payment'/>
+            {isDesktop && 
+                <div className='verify-details-proceed-button-container'> 
+                    <DesktopButton text="Confirm & Proceed" onClick = {proceed}/> 
+                </div>
+            }
+            {!isDesktop && <SecondaryButton text="Confirm & Proceed" onClick = {proceed}/>}
         </div>
     )
 }

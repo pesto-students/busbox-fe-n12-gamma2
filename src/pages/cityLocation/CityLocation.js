@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import LocationCard from '../../components/cards/locationCard/LocationCard'
 import SecondaryButton from '../../components/buttons/secondaryButton/SecondaryButton'
+import DesktopButton from '../../components/buttons/desktopButton/DesktopButton'
 import './CityLocation.css'
 import Heading from '../../components/heading/Heading'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -9,10 +10,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { dataActions } from '../../state/index'
 import snackbar from '../../components/snackbar/snackbarUtils'
+import useIsDesktop from '../../customHooks/useIsDesktop'
 
 export default function CityLocation(props){
     const data = useSelector(state => state.data);
     const navigate = useNavigate();
+    const isDesktop = useIsDesktop();
     const [pickUpLocations, setPickupLocations] = useState([]);
     const [dropLocations, setDropLocations] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState({
@@ -58,7 +61,7 @@ export default function CityLocation(props){
                 index = {index} 
                 address = {`${location.locationName}, ${location.address}`}
                 isSelected = {selectedLocation.selectedPickup?.address === pickUpLocations[index].address}
-                //TODO :: handle departure time for each location 
+                timeDetail = { {text : "Departure Time" , value : location.departureTime}}
             />
         )
     }
@@ -70,7 +73,7 @@ export default function CityLocation(props){
                 index = {index} 
                 address = {`${location.locationName}, ${location.address}`}
                 isSelected = {selectedLocation.selectedDrop?.address === dropLocations[index].address}
-                //TODO :: handle departure time for each location 
+                timeDetail = { {text : "Arrival Time" , value : location.departureTime}}
             />
         )
     }
@@ -86,18 +89,21 @@ export default function CityLocation(props){
     }
 
     return (
-        <div className='city-location'>
-            <div className='page-content'>
+        <div className={`city-location ${isDesktop ? '' : 'mobile-adjustments'}`}>
+            <div className='page-content city-location-content'>
                 <Heading text='Select Pick Up & Drop Point'/>
                 <h5> Available Pickup Points </h5>
                     {pickUpLocations.map(getPickupLocationCard)}
                 <h5> Available Drop Points </h5>
                     {dropLocations.map(getDropLocationCard)}
+                {isDesktop && 
+                    <div className='location-proceed-button-container'> 
+                        <DesktopButton text="Confirm & Proceed" onClick = {proceed}/> 
+                    </div>
+                }
             </div>
-            <SecondaryButton 
-                text="Confirm & Proceed"
-                onClick = {proceed}
-                />
+            
+            {!isDesktop && <SecondaryButton text="Confirm & Proceed" onClick = {proceed}/>}
         </div>
     )
 }
