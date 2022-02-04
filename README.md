@@ -1,4 +1,4 @@
-![App Screenshot](src/public/busbox.png)
+![App Screenshot](src/icons/busbox.png)
 
 # BUSBOX - A Simple Bus Ticket Booking System
 
