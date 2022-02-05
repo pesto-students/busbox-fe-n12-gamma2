@@ -21,11 +21,11 @@ export default function NotFound(){
             </div>
             {isDesktop && 
                 <div className='not-found-button-container'> 
-                    <DesktopButton text="Confirm & Proceed" onClick = {goHome}/> 
+                    <DesktopButton text="Back To Home" onClick = {goHome}/> 
                 </div>
                 }
             <div className='back-button-container'>
-                {!isDesktop && <TertiaryButton onClick={goHome}text='Back to Home'/>}
+                {!isDesktop && <TertiaryButton onClick={goHome}text='Back To Home'/>}
             </div>
         </div>
     )

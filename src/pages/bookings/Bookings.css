@@ -66,6 +66,7 @@
 .desktop-refresh {
     width: 1.5rem;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
 
 .no-bookings {

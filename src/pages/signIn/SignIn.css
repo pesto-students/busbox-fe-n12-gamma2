@@ -10,7 +10,7 @@
 .email-input {
     width: 100%;
     max-width: 350px;
-    padding: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .password-input{

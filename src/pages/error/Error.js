@@ -20,11 +20,11 @@ export default function Error(){
             </div>
             {isDesktop && 
                 <div className='error-button-container'> 
-                    <DesktopButton text="Go Back" onClick = {goHome}/> 
+                    <DesktopButton text="Back To Home" onClick = {goHome}/> 
                 </div>
             }
             <div className='back-button-container'>
-                {!isDesktop && <TertiaryButton onClick={goHome}text='Go Back'/>}
+                {!isDesktop && <TertiaryButton onClick={goHome}text='Back To Home'/>}
             </div>
         </div>
     )

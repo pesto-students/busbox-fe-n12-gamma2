@@ -2,8 +2,8 @@ import axios from 'axios'
 import { store } from '../state/store'
 import actionNames from '../state/actionNames'
 
-const BASE_URL = 'http://patilgajanan.com:3000'
-// const BASE_URL = 'http://localhost:3000'
+// const BASE_URL = 'http://patilgajanan.com:3000'
+const BASE_URL = 'http://localhost:3000'
 
 const api = axios.create({
     baseURL:BASE_URL,
