@@ -1,0 +1,78 @@
+.page-content.bookings {
+    padding-top: 0.9rem;
+}
+
+.dropdown {
+    border: 1px solid;
+    width: 120px;
+    height: fit-content;
+    border-radius: 4px;
+    font-size: small;
+    padding-top: 0.5rem;
+    align-content: center;
+    position: absolute;
+    right: 0%;
+    top: 9.5%;
+    margin: 0.9rem 2rem;
+    background-color: white;
+    z-index: 0;
+}
+
+.dropdown-control{
+    display: flex;
+    border-bottom: 1px solid;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0rem 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.dropdown-icon{
+    width: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.Dropdown-option{
+    padding: 0.5rem 0rem;
+    margin: 0;
+    border-bottom: 1px solid;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.heading-line {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mobile-refresh {
+    width: 1.5rem;
+    position: absolute;
+    top: 3%;
+    right: 6%;
+    cursor: pointer;
+}
+
+.desktop-refresh {
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+.no-bookings {
+    margin: 8rem auto;
+    text-align: center;
+}
+
+.no-bookings h2{
+    color: #5669FF;
+}

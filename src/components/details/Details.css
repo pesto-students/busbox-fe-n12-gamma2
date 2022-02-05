@@ -1,0 +1,29 @@
+.details-card{ 
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 1rem;
+}
+
+.detail{
+    display: flex;
+    margin-top: 0.2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail p{
+    margin: 1rem 0rem;
+    margin-right: 0.2rem;
+    width: 50%;
+    text-align: right;
+    word-break: break-all;
+    height: fit-content;
+}
+
+p.left{
+    text-align: left;
+}
