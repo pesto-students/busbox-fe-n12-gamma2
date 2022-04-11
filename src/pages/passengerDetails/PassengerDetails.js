@@ -100,7 +100,7 @@ export default function PasssengerDetails(){
         <div className="passenger-details">
             <div className="page-content passenger-details-content">
                 <Heading text="Provide Passenger Details" />
-                <div className='card'>
+                <div className='add-passenger-card'>
                     <InputBox
                         name = 'name'
                         value={detail.name}
@@ -119,29 +119,30 @@ export default function PasssengerDetails(){
                         onChange = {handleChange}
                     />
 
-                <FormControl className='gender'>
-                    <FormLabel className='gender-label' id="demo-radio-buttons-group-label">Gender</FormLabel>
-                    <RadioGroup
-                        className='gender-buttons'
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="female"
-                        name="gender"
-                        row
-                        value={detail.gender}
-                        onChange={handleChange}
-                    >
-                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
-                        <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                    </RadioGroup>
-                </FormControl>
+                    <FormControl className='gender'>
+                        <FormLabel className='gender-label' id="demo-radio-buttons-group-label">Gender</FormLabel>
+                        <RadioGroup
+                            className='gender-buttons'
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="gender"
+                            row
+                            value={detail.gender}
+                            onChange={handleChange}
+                        >
+                            <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                            <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                        </RadioGroup>
+                    </FormControl>
+                    <div onClick={addPassenger} className='add-pasenger-button'>
+                        <h2>+</h2> <h3>Add Passenger</h3>
+                    </div>
                 </div>
-            
-                <div onClick={addPassenger} className='add-pasenger-button'>
-                    <h2>+</h2> <h3>Add Passenger</h3>
-                </div>
-            
-                {passengerComponents}
+
+                {passengerComponents.length>0 && <div className='add-passenger-card'> 
+                                {passengerComponents}
+                </div> }
             </div>
             
             {isDesktop && 

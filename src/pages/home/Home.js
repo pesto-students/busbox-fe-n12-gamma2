@@ -29,8 +29,8 @@ export default function Home(){
     const data = useSelector(state => state?.data)
     const isDesktop = useIsDesktop()
     const [searchInput, setSearchInput] = useState({
-        sourceCity : '',
-        destinationCity: '',
+        sourceCity : 'Bangalore Rural',
+        destinationCity: 'Vijayawada',
         date : moment(new Date()).format("DD/MM/YYYY")
     });
     const [chip, setChip] = useState('today');

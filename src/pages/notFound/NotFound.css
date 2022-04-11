@@ -4,14 +4,16 @@
 
 .not-found-content{
     display: flex;
-    height: 85%;
+    height: 90%;
     align-items: center;
     justify-content: space-around;
+    padding-top: 2rem;
     color: #AD2F08;
 }
 
 .not-found-content img{
     width: 100%;
+    margin: 4rem 0;
 }
 
 .back-button-container{

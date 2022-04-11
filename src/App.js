@@ -50,7 +50,7 @@ function App() {
         <div className='main-container'>
             <div className={`loader-container ${state?.loader?.isLoading ? 'visible' : 'hidden'}`}>
                 <div className='loader'>
-                    <img alt='Loading...' src={require('./icons/Loading.gif')} />
+                    <img alt='Loading...' src={require('./icons/loader-compressed.gif')} />
                     <h4>Loading . . .</h4>
                 </div>
             </div>

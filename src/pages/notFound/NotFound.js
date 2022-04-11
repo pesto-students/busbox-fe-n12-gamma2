@@ -11,7 +11,9 @@ export default function NotFound(){
     const navigate = useNavigate();
     const isDesktop = useIsDesktop();
     const goHome = () => navigate('/');
-
+    const tip = (<div style={{margin : '20px'}}>
+        Note : Search Bangalore Rural & Vijayawada to checkout the project
+    </div>)
     return (
         <div className="not-found">
             <div className="page-content not-found-content">
@@ -21,12 +23,13 @@ export default function NotFound(){
             </div>
             {isDesktop && 
                 <div className='not-found-button-container'> 
-                    <DesktopButton text="Confirm & Proceed" onClick = {goHome}/> 
+                    <DesktopButton text="Back To Home" onClick = {goHome}/> 
                 </div>
                 }
             <div className='back-button-container'>
-                {!isDesktop && <TertiaryButton onClick={goHome}text='Back to Home'/>}
+                {!isDesktop && <TertiaryButton onClick={goHome}text='Back To Home'/>}
             </div>
+            {tip}
         </div>
     )
 }

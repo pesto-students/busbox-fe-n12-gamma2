@@ -69,14 +69,10 @@ export default function BookingDetails(){
                 {isDesktop && 
                     <div className='desktop-button-container'>
                         <div className='booking-details-proceed-button-container'>
-                            <div> 
-                                <TertiaryButton onClick={download} text='Download'/>
-                            </div>
+                            <TertiaryButton onClick={download} text='Download'/>
                         </div>
                         <div className='booking-details-proceed-button-container'>
-                            <div> 
-                                <TertiaryButton onClick={mailme} text='E-Mail Me'/>
-                            </div>
+                            <TertiaryButton onClick={mailme} text='E-Mail Me'/>
                         </div>
                     </div>
                 }

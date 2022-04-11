@@ -59,9 +59,9 @@ function getNormalSeatRow(seatConfig){
     const rowNumber = row*4
     return (
         <div key={row} className="normal-row">
-            {getSide(rowNumber, rowNumber+1, seatConfig)}
-            {showMiddleSeat && getSeat(rowNumber+4, seatConfig)}
-            {getSide(rowNumber+2, rowNumber+3, seatConfig)}
+            {getSide(rowNumber+1, rowNumber+2, seatConfig)}
+            {showMiddleSeat && getSeat(rowNumber+5, seatConfig)}
+            {getSide(rowNumber+3, rowNumber+4, seatConfig)}
         </div>
     )
 }

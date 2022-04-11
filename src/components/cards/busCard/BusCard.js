@@ -29,7 +29,7 @@ export default function BusCard(props){
                     <div className="timings-container">
                         {timingDetails.map(getTimeDetails)}
                     </div>
-                    <p className="price">{`₹ ${thisBus.pricePerSeat}`}</p>
+                    <p className="price">{`₹ ${Math.floor(thisBus.pricePerSeat)}`}</p>
                 </div>
 
 {/* Amenities */}

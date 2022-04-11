@@ -1,8 +1,8 @@
 import actionNames from '../actionNames'
 
 const initialState = {
-    userInputSourceCity : null,
-    userInputDestinationCity: null,
+    userInputSourceCity : "Bangalore Rural",
+    userInputDestinationCity: "Vijayawada",
     userInputDate : null,
     buses: []
 }

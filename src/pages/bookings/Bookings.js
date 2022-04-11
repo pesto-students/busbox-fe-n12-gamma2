@@ -50,7 +50,8 @@ export default function Bookings (){
                 setBookingsToShow(cancelledBookings)
                 break;
             case 'upcoming':
-                const upcomingBookings = allBookings.filter(booking => moment(booking.journeyDate, 'DD/MM/YYYY') > today);
+                let upcomingBookings = allBookings.filter(booking => moment(booking.journeyDate, 'DD/MM/YYYY') > today);
+                upcomingBookings = upcomingBookings.filter(booking => booking?.bookingStatus?.trim()?.toLowerCase() !== 'cancelled')
                 setBookingsToShow(upcomingBookings)
                 break;
             case 'completed':
