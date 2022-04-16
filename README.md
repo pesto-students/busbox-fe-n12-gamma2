@@ -16,8 +16,8 @@ BusBox is the simple bus ticket booking application. It gives you a nice and use
 Please Note:
 
 - On stripe dashboard you can use test card (4242 4242 4242 4242) with future expiry date and any 3 digit cvv to make a successful booking.
-- We only have buses for these cities for now
-Banglore ,Kolar, Vellore, Tirupati, Nellore, Ongole, Guntur, Vijayawada, Kakinada, Visakhapatna, Srikakulam, Ichchapuram, Brahmapur, Khordha, Bhubaneswar
+- We only have buses for these cities for now </br>
+Banglore ,Kolar, Vellore, Tirupati, Nellore, Ongole, Guntur, Vijayawada, Kakinada, Visakhapatna, Srikakulam, Ichchapuram, Brahmapur, Khordha, Bhubaneswar.
 
 ## Installation
 
