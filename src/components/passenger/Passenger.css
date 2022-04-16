@@ -1,0 +1,17 @@
+.passenger{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: medium;
+    font-weight: bold;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.passenger-icon {
+    width: 1rem;
+}
+
+.close-icon {
+    width: 1rem;
+}

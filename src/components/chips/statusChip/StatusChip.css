@@ -1,0 +1,20 @@
+.status-chip {
+    border-radius: 6px;
+    padding: 0.3rem 0.8rem;
+    color: white;
+    text-align: center;
+    cursor: auto;
+}
+
+.status-chip.completed {
+    background-color: yellow;
+    color: blue;
+}
+
+.status-chip.upcoming {
+    background-color: green;
+}
+
+.status-chip.cancelled {
+    background-color: red;
+}

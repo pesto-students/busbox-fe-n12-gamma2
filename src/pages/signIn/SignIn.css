@@ -1,0 +1,39 @@
+.sign-in{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3rem;
+    justify-content: space-between;
+}
+
+.email-input {
+    width: 100%;
+    max-width: 350px;
+    padding: 0.5rem;
+}
+
+.password-input{
+    width: 100%;
+    max-width: 350px;
+    padding: 0.5rem;
+}
+
+.login-btn{
+    height: 56px;
+    padding: 1rem 0;  
+}
+
+.btn-google, .btn-guest{
+    height: 4rem;
+    width: 13rem;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;   
+    cursor: pointer;
+}
+
+.bottom-icons{
+    width:2rem;
+    height:2rem;
+} 

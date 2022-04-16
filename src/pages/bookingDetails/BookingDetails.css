@@ -1,0 +1,31 @@
+.booking-details {
+    height: fit-content;
+    overflow-y: auto;
+    padding-bottom: 75px;
+}
+
+.button-container{
+    display: flex;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    height: fit-content;
+}
+
+.button-container div{
+    width: 50%;
+}
+.cancel {
+    color: #FA216F;
+}
+.booking-details-proceed-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+}
+.desktop-button-container{
+    display: flex;
+    
+    width: 100%;
+    height: fit-content;
+}

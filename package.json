@@ -1,0 +1,64 @@
+{
+  "name": "busbox-fe-n12-gamma2",
+  "version": "1.0.0",
+  "description": "this is the front-end repo.",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "webpack --mode production",
+    "serve": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pesto-students/busbox-fe-n12-gamma2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pesto-students/busbox-fe-n12-gamma2/issues"
+  },
+  "homepage": "https://github.com/pesto-students/busbox-fe-n12-gamma2#readme",
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/lab": "^5.0.0-alpha.65",
+    "@mui/material": "^5.3.0",
+    "@parcel/transformer-react-refresh-wrap": "^2.2.1",
+    "axios": "^0.25.0",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.0",
+    "file-saver": "^2.0.5",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
+    "react-google-login": "^5.2.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.1",
+    "react-toastify": "^8.1.0",
+    "react-window": "^1.8.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.1",
+    "use-react-router-breadcrumbs": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "presets": [
+    "@babel/preset-react"
+  ]
+}

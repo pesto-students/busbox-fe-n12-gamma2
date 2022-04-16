@@ -1,0 +1,29 @@
+.error {
+    height: 100%;
+}
+
+.error-content{
+    display: flex;
+    height: 90%;
+    align-items: center;
+    justify-content: flex-start;
+    color: #AD2F08;
+    padding-top: 2rem;
+}
+
+.error-content img{
+    width: 100%;
+    margin: 4rem;
+}
+
+.back-button-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.error-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+    margin: auto;
+}

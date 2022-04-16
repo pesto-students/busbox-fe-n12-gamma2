@@ -1,0 +1,27 @@
+.not-found {
+    height: 100%;
+}
+
+.not-found-content{
+    display: flex;
+    height: 85%;
+    align-items: center;
+    justify-content: space-around;
+    color: #AD2F08;
+}
+
+.not-found-content img{
+    width: 100%;
+}
+
+.back-button-container{
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+}
+.not-found-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+    margin: auto;
+}

@@ -1,0 +1,89 @@
+.seat-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 75px;
+}
+.sl-seat-middle-top{
+    width: 100%;
+    height: fit-content;
+}
+.sl-seat-bottom{
+    width: 100%;
+    height: fit-content;   
+    margin-top: 5px;
+    
+}
+
+.sleeper-row, .normal-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+}
+
+.sleeper-deck, .normal-twin {
+    display:flex;
+    width: 45%;
+    justify-content: space-around;
+}
+
+.sleeper-twin {
+    display: flex;
+    width: 40%;
+    justify-content: space-between
+}
+
+.normal-twin {
+    width: 40%;
+}
+
+.seats {
+    border: 1px solid black;
+    margin: 1rem 0rem;
+    padding: 1rem 0rem;
+    border-radius: 8px;
+}
+
+.seat-info-container {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid;
+    padding-bottom: 0.5rem;
+}
+
+.seat-info-container p {
+    margin: 0;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    width: 70px;
+    text-align: center;
+}
+
+.seat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deck-info{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid;
+    margin-bottom: 1rem;
+    padding: 1rem 0rem;
+}
+
+.deck-info h4{
+    margin: 0;
+}
+
+.normal-seats-container {
+    padding-top: 1rem;
+}
+
+.book-seats-button-container{
+    align-self: center;
+    height: fit-content;
+    width: 256px;
+}
